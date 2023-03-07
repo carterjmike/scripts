@@ -1,7 +1,7 @@
-#> Script to install r packages on fresh install ---
+#> Script to install r packages on fresh install ----
 #> Author: Mike Carter
 
-#> install pak for package management rather than default
+#> first install {pak} for package management
 install.packages("pak")
 
 #> user packages
@@ -13,7 +13,6 @@ pkgs <- c(
   "compute.es",
   "emmeans",
   "devtools",
-  "faux",
   "fontawesome",
   "ggpath",
   "ggpmisc",
@@ -43,6 +42,7 @@ pkgs <- c(
   "ggResidpanel",
   "reticulate",
   "rmarkdown",
+  "Routliers",
   "scales",
   "styler",
   "sysfonts",
@@ -54,8 +54,10 @@ pkgs <- c(
   "WRS2",
   "yaml",
   #> Github or development versions
+  "cran/retimes@0.1-2", # archived package workaround
   "crsh/citr",
   "crsh/papaja@devel",
+  "debruine/faux",
   "gadenbuie/rsthemes",
   "GRousselet/rogme",
   "hrbrmstr/hrbragg",
