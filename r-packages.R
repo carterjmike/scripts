@@ -1,12 +1,12 @@
-#> Script to install r packages on fresh install ----
-#> Author: Mike Carter
+#| Script to install r packages on fresh install ----
+#| Author: Mike Carter
 
-#> first install {pak} for package management
+##| install {pak} for package management
 install.packages("pak")
 
-#> user packages
+##| user packages
 pkgs <- c(
-  # RCRAN packages
+  #> RCRAN packages
   "tidyverse",
   "easystats",
   "afex",
@@ -14,6 +14,7 @@ pkgs <- c(
   "emmeans",
   "devtools",
   "fontawesome",
+  "ggfortify",
   "ggpath",
   "ggpmisc",
   "ggpp",
@@ -42,6 +43,7 @@ pkgs <- c(
   "ggResidpanel",
   "reticulate",
   "rmarkdown",
+  "robust",
   "Routliers",
   "scales",
   "styler",
