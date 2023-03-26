@@ -276,9 +276,10 @@ exit 0
 #sudo systemctl daemon-reload
 #sudo systemctl enable syncthing@mjc
 #sudo systemctl start syncthing@mjc
-# then go to http://localhost:8384/
+# then go to localhost:8384/
 
 # Notes on Julia install
+# OLD way but keeping incase juliaup development ends
 # tar zxvf julia-X.X.X-linux-x86_64.tar.gz
 # sudo cp -r julia-X.X.X /opt/
 # sudo ln -s /opt/julia-X.X.X/bin/julia /usr/local/bin/julia
