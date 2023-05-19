@@ -101,6 +101,7 @@ typeset -a REPO_PKGS=(
 "system76-keyboard-configurator"
 "texlive-full"
 "tree"
+"ttf-mscorefonts-installer"
 "webp-pixbuf-loader"
 ) # }
 
