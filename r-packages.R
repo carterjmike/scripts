@@ -1,5 +1,7 @@
-#| Script to install r packages on fresh install ----
-#| Author: Mike Carter
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#+ Script to install r packages on fresh install
+#+ Author: Mike Carter
+#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 ##| install {pak} for package management
 install.packages("pak")
@@ -10,6 +12,7 @@ pkgs <- c(
   "tidyverse",
   "easystats",
   "afex",
+  "BUCSS",
   "compute.es",
   "emmeans",
   "devtools",
@@ -30,12 +33,17 @@ pkgs <- c(
   "languageserver",
   "linl",
   "markdown",
+  "MBESS",
   "metafor",
   "miniUI",
+  "MOTE",
   "pagedown",
   "patchwork",
   "preregr",
   "prismatic",
+  "puniform",
+  "pwr",
+  "pwrss",
   "qqplotr",
   "quarto",
   "remotes",
@@ -47,6 +55,8 @@ pkgs <- c(
   "Routliers",
   "scales",
   "styler",
+  "superb",
+  "Superpower",
   "sysfonts",
   "TOSTER",
   "trackdown",
@@ -64,8 +74,9 @@ pkgs <- c(
   "GRousselet/rogme",
   "hrbrmstr/hrbragg",
   "hrbrmstr/waffle",
+  "ismayc/thesisdown",
   "paleolimbot/rbbt",
-  # "paezha/macdown",
+  "paezha/macdown",
   "profandyfield/discovr"
 )
 pak::pkg_install(pkgs)

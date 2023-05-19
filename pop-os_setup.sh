@@ -15,7 +15,6 @@
 CODE=1.76.2
 JBMONO=2.304
 JULIAMONO=0.048
-NEOVIM=0.8.3
 QUARTO=1.2.335
 RSTUDIO=2023.03.0-386
 
@@ -52,9 +51,11 @@ typeset -a REPO_PKGS=(
 #"alacritty"
 #"bash-completion" # already installed in Pop!
 "biber"
+"cmake"
 "dconf-editor"
 "ffmpeg"
 "fzf"
+"gettext"
 "gir1.2-gtop-2.0"
 "gnome-sushi"
 "gnome-tweaks"
@@ -84,6 +85,7 @@ typeset -a REPO_PKGS=(
 "libssl-dev"
 "libxt-dev"
 #"lm-sensors" # already installed in Pop!
+"ninja-build"
 "nodejs"
 "npm"
 "nvme-cli"
@@ -228,8 +230,6 @@ wget -P ~/Downloads \
 https://download.jetbrains.com/fonts/JetBrainsMono-${JBMONO}.zip
 wget -P ~/Downloads \
 https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-wget -P ~/Downloads \
-https://github.com/neovim/neovim/releases/download/v${NEOVIM}/nvim-linux64.deb
 wget -P ~/Downloads \
 https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO}/quarto-${QUARTO}-linux-amd64.deb
 wget -O ~/Downloads/JetBrainsMono-NF.zip \
