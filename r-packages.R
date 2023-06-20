@@ -16,6 +16,7 @@ pkgs <- c(
   "compute.es",
   "emmeans",
   "devtools",
+  "faux",
   "fontawesome",
   "ggfortify",
   "ggpath",
@@ -69,12 +70,12 @@ pkgs <- c(
   "cran/retimes@0.1-2", # archived package workaround
   "crsh/citr",
   "crsh/papaja@devel",
-  "debruine/faux",
   "gadenbuie/rsthemes",
   "GRousselet/rogme",
   "hrbrmstr/hrbragg",
-  "hrbrmstr/waffle",
+  #"hrbrmstr/waffle",
   "ismayc/thesisdown",
+  "liamgilbey/ggwaffle",
   "paleolimbot/rbbt",
   "paezha/macdown",
   "profandyfield/discovr"
