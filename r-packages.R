@@ -71,6 +71,7 @@ pkgs <- c(
   "crsh/citr",
   "crsh/papaja@devel",
   "gadenbuie/rsthemes",
+  "giocomai/ganttrify",
   "GRousselet/rogme",
   "hrbrmstr/hrbragg",
   #"hrbrmstr/waffle",
