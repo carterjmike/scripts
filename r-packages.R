@@ -74,7 +74,6 @@ pkgs <- c(
   "giocomai/ganttrify",
   "GRousselet/rogme",
   "hrbrmstr/hrbragg",
-  #"hrbrmstr/waffle",
   "ismayc/thesisdown",
   "liamgilbey/ggwaffle",
   "paleolimbot/rbbt",
