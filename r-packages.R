@@ -75,6 +75,7 @@ pkgs <- c(
   "GRousselet/rogme",
   "hrbrmstr/hrbragg",
   "ismayc/thesisdown",
+  "langenberg/powerANOVA",
   "liamgilbey/ggwaffle",
   "paleolimbot/rbbt",
   "paezha/macdown",
