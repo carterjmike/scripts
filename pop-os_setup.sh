@@ -11,30 +11,7 @@
 # installer (https://www.archlabslinux.com) and the Arch Wiki
 # -------------------------------------------------------
 
-# Versions for deb files
-CODE=1.76.2
-JBMONO=2.304
-JULIAMONO=0.048
-QUARTO=1.2.335
-RSTUDIO=2023.03.0-386
-
-
-# Packages to remove {
-#typeset -a RM_PKGS=(
-#"firefox"
-#"gedit"
-#"totem"
-#) # }
-
-# Remove some packages
-#echo
-#echo "Removing some packages"
-#sudo apt remove ${RM_PKGS[*]} -y
-#echo
-#echo "Clean up packages no longer needed"
-#sudo apt autoremove -y
-
-# Get current version of R
+# Setup to use most up-to-date version of R
 echo
 wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
 echo
@@ -48,7 +25,7 @@ sudo apt update && sudo apt upgrade
 # Packages to install {
 typeset -a REPO_PKGS=(
 "adwaita-qt"
-#"alacritty"
+"alacritty"
 #"bash-completion" # already installed in Pop!
 "biber"
 "cmake"
@@ -90,7 +67,10 @@ typeset -a REPO_PKGS=(
 "npm"
 "nvme-cli"
 "pdftk"
+"python3-cffi"
+"python3-nautilus"
 "python3-pip"
+"python3-xcffib"
 "qt5ct"
 "r-base"
 "ripgrep"
@@ -103,6 +83,7 @@ typeset -a REPO_PKGS=(
 "tree"
 "ttf-mscorefonts-installer"
 "webp-pixbuf-loader"
+"zsh"
 ) # }
 
 # Flatpaks to install {
@@ -110,9 +91,7 @@ typeset -a FLATPAKS=(
 "com.github.tchx84.Flatseal"
 "com.google.Chrome"
 "com.mattjakeman.ExtensionManager"
-"com.mattermost.Desktop"
 "com.obsproject.Studio"
-"com.play0ad.zeroad"
 "com.slack.Slack"
 "com.spotify.Client"
 "io.mpv.Mpv"
@@ -126,7 +105,8 @@ typeset -a FLATPAKS=(
 "org.inkscape.Inkscape"
 "org.jamovi.jamovi"
 #"org.olivevideoeditor.Olive"
-"org.zotero.Zotero"
+#"org.zotero.Zotero"
+"org.zulip.Zulip"
 "us.zoom.Zoom"
 ) # }
 
@@ -201,44 +181,6 @@ mkdir -p ~/.local/share/fonts
 mkdir -p ~/.local/share/icons
 mkdir -p ~/.themes
 
-# Create various files in home folder
-#echo "Create some files..."
-# Create shutdown script for pop-launcher but make poweroff
-# rather than power off a keyword
-#cat > ~/.local/share/pop-launcher/scripts/poweroff.sh <<EOF
-#!/bin/sh
-#
-# name: Power off
-# icon: system-shutdown
-# description: Power off the system
-# keywords: poweroff shutdown
-
-#gnome-session-quit --power-off
-
-#EOF
-
-#chmod +x ~/.local/share/pop-launcher/scripts/poweroff.sh
-
-
-# Download some deb files
-echo "Downloading deb files..."
-wget -O ~/Downloads/code_${CODE}-amd64.deb \
-https://update.code.visualstudio.com/${CODE}/linux-deb-x64/stable/
-wget -P ~/Downloads \
-https://download1.rstudio.org/electron/jammy/amd64/rstudio-${RSTUDIO}-amd64.deb
-#https://s3.amazonaws.com/rstudio-ide-build/electron/jammy/amd64/rstudio-${RSTUDIO}-amd64.deb
-wget -P ~/Downloads \
-https://download.jetbrains.com/fonts/JetBrainsMono-${JBMONO}.zip
-wget -P ~/Downloads \
-https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-wget -P ~/Downloads \
-https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO}/quarto-${QUARTO}-linux-amd64.deb
-wget -O ~/Downloads/JetBrainsMono-NF.zip \
-https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/JetBrainsMono.zip
-wget -P ~/Downloads \
-https://github.com/cormullion/juliamono/releases/download/v${JULIAMONO}/JuliaMono.zip
-
-
 # Disable these applications from search
 echo "NoDisplay=true" | sudo tee -a \
 /usr/share/applications/vim.desktop \
@@ -248,11 +190,6 @@ echo "NoDisplay=true" | sudo tee -a \
 /usr/share/applications/vprerex.desktop \
 /usr/share/applications/texdoctk.desktop \
 /usr/share/applications/display-im6.q16.desktop > /dev/null
-
-# Change shell to zsh
-#echo
-#echo "Changing shell to zsh"
-#chsh -s $(which zsh)
 
 # Make libsecret for git credentials
 cd /usr/share/doc/git/contrib/credential/libsecret && sudo make
@@ -264,8 +201,14 @@ echo "Exiting..."
 sleep 1
 exit 0
 
+
 # SOME NOTES...
 #
+# Change shell to zsh
+#echo
+#echo "Changing shell to zsh"
+#chsh -s $(which zsh)
+
 # Fix login to be on primary monitor
 #sudo cp ~/.config/monitors.xml /var/lib/gdm3/.config/
 #sudo chown gdm:gdm /var/lib/gdm3/.config/monitors.xml
@@ -290,3 +233,40 @@ exit 0
 # How to revert a package back to automatically installed if the status
 # switches to manually installed
 # sudo apt-mark auto PACKAGE
+
+
+# OLD STUFF...
+#
+# Packages to remove {
+#typeset -a RM_PKGS=(
+#"firefox"
+#"gedit"
+#"totem"
+#) # }
+
+# Remove some packages
+#echo
+#echo "Removing some packages"
+#sudo apt remove ${RM_PKGS[*]} -y
+#echo
+#echo "Clean up packages no longer needed"
+#sudo apt autoremove -y
+
+# Create various files in home folder
+#echo "Create some files..."
+# Create shutdown script for pop-launcher but make poweroff
+# rather than power off a keyword
+#cat > ~/.local/share/pop-launcher/scripts/poweroff.sh <<EOF
+#!/bin/sh
+#
+# name: Power off
+# icon: system-shutdown
+# description: Power off the system
+# keywords: poweroff shutdown
+
+#gnome-session-quit --power-off
+
+#EOF
+
+#chmod +x ~/.local/share/pop-launcher/scripts/poweroff.sh
+
