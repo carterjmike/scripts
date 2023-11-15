@@ -228,6 +228,7 @@ exit 0
 # sudo cp -r julia-X.X.X /opt/
 # sudo ln -s /opt/julia-X.X.X/bin/julia /usr/local/bin/julia
 
+# wget https://raw.githubusercontent.com/qtile/qtile/master/resources/qtile.desktop
 # Move qtile desktop file to /usr/share/xsessions/
 
 # How to revert a package back to automatically installed if the status
