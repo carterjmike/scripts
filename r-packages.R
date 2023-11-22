@@ -30,6 +30,7 @@ pkgs <- c(
   "here",
   "Hmisc",
   "hrbrthemes",
+  "interactionR",
   "kableExtra",
   "knitr",
   "languageserver",
