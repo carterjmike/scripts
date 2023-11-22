@@ -25,7 +25,7 @@ sudo apt update && sudo apt upgrade
 # Packages to install {
 typeset -a REPO_PKGS=(
 "adwaita-qt"
-"alacritty"
+#"alacritty"
 #"bash-completion" # already installed in Pop!
 "biber"
 "cmake"
@@ -67,10 +67,10 @@ typeset -a REPO_PKGS=(
 "npm"
 "nvme-cli"
 "pdftk"
-"python3-cffi"
-"python3-nautilus"
+#"python3-cffi"
+#"python3-nautilus"
 "python3-pip"
-"python3-xcffib"
+#"python3-xcffib"
 "qt5ct"
 "r-base"
 "ripgrep"
