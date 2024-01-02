@@ -12,15 +12,13 @@
 # Written by Michael Carter
 # -------------------------------------------------------
 
-
-# Check if any updates are available
+# Run any updates if needed
 echo
-echo "Checking if any updates are available..."
+echo "Running any available updates..."
 sudo pacman -Syu
 
-
-# Packages to install {
-typeset -a USER_PKGS=(
+# System, window manger, and program packages to install {
+typeset -a MAIN_PKGS=(
 "arandr"
 "autorandr"
 "bash-completion"
@@ -30,10 +28,16 @@ typeset -a USER_PKGS=(
 "bluez"
 "bluez-utils"
 "brightnessctl"
+"btop"
 "curl"
-"dconf-editor"
+#"dconf-editor"
 "dunst"
+"e2fsprogs"
+"efibootmgr"
+"efivar"
 #"evince"
+"exfatprogs"
+"exfat-utils"
 "ffmpeg"
 "firefox"
 "fzf"
@@ -42,22 +46,32 @@ typeset -a USER_PKGS=(
 "gnome-themes-extra"
 "gpick"
 "gvfs"
-"htop"
 "hunspell-en_ca"
 "hunspell-en_us"
 "imagemagick"
 "inkscape"
+"kitty"
+#"ldns"
 "libgit2"
 "libreoffice-fresh"
 "libsecret"
 "linux-headers"
-#"lxappearance-gtk3"
+"lm_sensors"
+"lsb-release"
+"mesa"
 "mpv"
+"network-manager-applet"
 "noto-fonts"
 "noto-fonts-cjk"
 "noto-fonts-emoji"
+"openssh"
+"pacman-contrib"
 "pavucontrol"
 "picom"
+"pipewire"
+"pipewire-alsa"
+"pipewire-jack"
+"pipewire-pulse"
 "playerctl"
 "python-dbus-next"
 "python-iwlib"
@@ -70,6 +84,7 @@ typeset -a USER_PKGS=(
 "qt6ct"
 "qtile"
 "r"
+"reflector"
 "rofi"
 "rust"
 "scrot"
@@ -82,13 +97,14 @@ typeset -a USER_PKGS=(
 "thunar-media-tags-plugin"
 "thunar-volman"
 "tk"
+"ttf-dejavu"
 "ttf-font-awesome"
 "ttf-jetbrains-mono"
 "ttf-joypixels"
 "ttf-roboto"
 "tumbler"
-"wezterm"
 "wget"
+"wireplumber"
 "wmctrl"
 "xarchiver"
 "xcb-proto"
@@ -97,18 +113,19 @@ typeset -a USER_PKGS=(
 "xcb-util-cursor"
 "xcb-util-wm"
 "xclip"
+"xdg-user-dirs"
+"xdg-utils"
 "xdotool"
+"xf86-input-libinput"
+#"xf86-video-amdgpu"
+#"xf86-video-intel"
+"xorg"
+"xorg-xinit"
 "zathura"
 "zathura-pdf-mupdf"
-#"zsh"
-#"zsh-autosuggestions"
-#"zsh-completions"
-#"zsh-history-substring-search"
-#"zsh-syntax-highlighting"
 ) # }
 
-
-# Packages to install {
+# Printer packages to install {
 #typeset -a PRINT_PKGS=(
 #"cups"
 #"cups-filters"
@@ -122,40 +139,15 @@ typeset -a USER_PKGS=(
 #"system-config-printer"
 #) # }
 
-
-# Packages to install {
-typeset -a FLATPAKS=(
-"com.github.tchx84.Flatseal"
-#"com.google.Chrome"
-#"com.obsproject.Studio"
-#"com.slack.Slack"
-#"com.spotify.Client"
-#"org.audacityteam.Audacity"
-#"org.gnome.DejaDup"
-#"org.gnome.GTG"
-#"org.gnome.World.PikaBackup"
-"org.jamovi.jamovi"
-#"org.olivevideoeditor.Olive"
-#"org.zotero.Zotero"
-#"us.zoom.Zoom"
-) # }
-
-
 # Install packages
 echo
-echo "Installing packages from arch repo..."
-sudo pacman -S ${USER_PKGS[*]} --needed
+echo "Installing main packages..."
+sudo pacman -S ${MAIN_PKGS[*]} --needed
 echo
 #echo "Installing packages for printing..."
 #sudo pacman -S ${PRINT_PKGS[*]} --needed
 #sudo systemctl enable --now cups.socket
 #echo
-echo "Installing flatpaks from flathub"
-flatpak install flathub ${FLATPAKS[*]} -y
-echo
-echo "Refresh font cache for jamovi"
-flatpak run --command=fc-cache org.jamovi.jamovi -f -v
-
 
 # Enable some services
 echo
@@ -163,7 +155,6 @@ echo "Enabling bluetooth support..."
 sudo systemctl enable --now bluetooth.service
 #sudo sed -i 's/'#AutoEnable=false'/'AutoEnable=true'/g' /etc/bluetooth/main.conf
 echo
-
 
 # Create, modify, or overwrite some files
 echo "Creating, modifying, or overwriting some files..."
@@ -176,13 +167,6 @@ sudo sed -i \
 sudo sed -i \
 '/session    include      system-local-login/a session    optional     pam_gnome_keyring.so auto_start' \
 /etc/pam.d/login
-
-
-# Change shell to zsh
-#echo
-#echo "Changing shell to zsh"
-#chsh -s $(which zsh)
-
 
 # Exit
 echo
