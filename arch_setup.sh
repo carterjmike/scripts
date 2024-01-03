@@ -45,6 +45,7 @@ typeset -a MAIN_PKGS=(
 "gnome-disk-utility"
 "gnome-themes-extra"
 "gpick"
+"gtk-engine-murrine"
 "gvfs"
 "hunspell-en_ca"
 "hunspell-en_us"
@@ -58,6 +59,7 @@ typeset -a MAIN_PKGS=(
 "linux-headers"
 "lm_sensors"
 "lsb-release"
+"meld"
 "mesa"
 "mpv"
 "network-manager-applet"
@@ -73,6 +75,7 @@ typeset -a MAIN_PKGS=(
 "pipewire-jack"
 "pipewire-pulse"
 "playerctl"
+"polkit-gnome"
 "python-dbus-next"
 "python-iwlib"
 "python-pip"
@@ -91,6 +94,7 @@ typeset -a MAIN_PKGS=(
 "seahorse"
 "stow"
 #"sxhkd"
+"system76-firmware"
 "texlive-meta"
 "thunar"
 "thunar-archive-plugin"
@@ -151,9 +155,11 @@ echo
 
 # Enable some services
 echo
-echo "Enabling bluetooth support..."
+echo "Enabling some services..."
 sudo systemctl enable --now bluetooth.service
 #sudo sed -i 's/'#AutoEnable=false'/'AutoEnable=true'/g' /etc/bluetooth/main.conf
+sudo systemctl enable --now avahi-daemon.service
+sudo systemtl enable --now system76-firmware-daemon.service
 echo
 
 # Create, modify, or overwrite some files
