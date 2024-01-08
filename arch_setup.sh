@@ -40,6 +40,7 @@ typeset -a MAIN_PKGS=(
 "exfat-utils"
 "ffmpeg"
 "firefox"
+"fwupd"
 "fzf"
 "gcc-fortran"
 "gnome-disk-utility"
@@ -100,6 +101,7 @@ typeset -a MAIN_PKGS=(
 "thunar-archive-plugin"
 "thunar-media-tags-plugin"
 "thunar-volman"
+"timeshift"
 "tk"
 "ttf-dejavu"
 "ttf-font-awesome"
@@ -153,15 +155,6 @@ echo
 #sudo systemctl enable --now cups.socket
 #echo
 
-# Enable some services
-echo
-echo "Enabling some services..."
-sudo systemctl enable --now bluetooth.service
-#sudo sed -i 's/'#AutoEnable=false'/'AutoEnable=true'/g' /etc/bluetooth/main.conf
-sudo systemctl enable --now avahi-daemon.service
-sudo systemtl enable --now system76-firmware-daemon.service
-echo
-
 # Create, modify, or overwrite some files
 echo "Creating, modifying, or overwriting some files..."
 
@@ -173,6 +166,29 @@ sudo sed -i \
 sudo sed -i \
 '/session    include      system-local-login/a session    optional     pam_gnome_keyring.so auto_start' \
 /etc/pam.d/login
+
+# Enable some services
+echo
+echo "Enabling some services..."
+sudo systemctl enable --now bluetooth.service
+#sudo sed -i 's/'#AutoEnable=false'/'AutoEnable=true'/g' /etc/bluetooth/main.conf
+sudo systemctl enable --now avahi-daemon.service
+sudo systemtl enable --now system76-firmware-daemon.service
+echo
+
+# Create some directories
+echo "Creating some personal directories..."
+mkdir -p ~/.local/{bin,build}
+mkdir -p ~/.local/share/{applications,fonts,icons}
+mkdir -p ~/.themes
+
+# Install paru as AUR helper
+echo "Cloning paru repository..."
+cd ~/.local/build && git clone https://aur.archlinux.org/paru.git
+echo
+echo "Building and installing paru..."
+cd paru && makepkg -si
+cd
 
 # Exit
 echo
