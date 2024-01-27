@@ -67,10 +67,8 @@ typeset -a REPO_PKGS=(
 "npm"
 "nvme-cli"
 "pdftk"
-#"python3-cffi"
 #"python3-nautilus"
 "python3-pip"
-#"python3-xcffib"
 "qt5ct"
 "r-base"
 "ripgrep"
@@ -81,9 +79,9 @@ typeset -a REPO_PKGS=(
 "system76-keyboard-configurator"
 "texlive-full"
 "tree"
-"ttf-mscorefonts-installer"
+#"ttf-mscorefonts-installer"
 "webp-pixbuf-loader"
-"zsh"
+#"zsh"
 ) # }
 
 # Flatpaks to install {
@@ -175,10 +173,9 @@ dconf write \
 
 # Make personal directories
 #echo "Create personal directories"
-mkdir -p ~/.local/build
-mkdir -p ~/.local/share/pop-launcher/scripts
-mkdir -p ~/.local/share/fonts
-mkdir -p ~/.local/share/icons
+mkdir -p ~/Documents/{1_projects,2_areas,3_resources,4_archives}
+mkdir -p ~/.local/{bin,build}
+mkdir -p ~/.local/share/{fonts,icons,pop-launcher/scripts}
 mkdir -p ~/.themes
 
 # Disable these applications from search

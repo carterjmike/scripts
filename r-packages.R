@@ -80,6 +80,7 @@ pkgs <- c(
   "liamgilbey/ggwaffle",
   "paleolimbot/rbbt",
   "paezha/macdown",
-  "profandyfield/discovr"
+  "profandyfield/discovr",
+  "vincentarelbundock/tinytable" # already on CRAN but being actively developed
 )
 pak::pkg_install(pkgs)
