@@ -105,7 +105,7 @@ typeset -a FLATPAKS=(
 #"org.olivevideoeditor.Olive"
 #"org.zotero.Zotero"
 "org.zulip.Zulip"
-"us.zoom.Zoom"
+#"us.zoom.Zoom"
 ) # }
 
 # Install rep packages and flatpaks
