@@ -17,6 +17,7 @@ pkgs <- c(
   "countdown",
   "emmeans",
   "devtools",
+  "diffdf",
   "faux",
   "fontawesome",
   "ggfortify",
