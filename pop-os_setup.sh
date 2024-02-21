@@ -79,7 +79,7 @@ typeset -a REPO_PKGS=(
 "system76-keyboard-configurator"
 "texlive-full"
 "tree"
-#"ttf-mscorefonts-installer"
+"ttf-mscorefonts-installer"
 "webp-pixbuf-loader"
 #"zsh"
 ) # }
@@ -105,6 +105,7 @@ typeset -a FLATPAKS=(
 "org.inkscape.Inkscape"
 "org.jamovi.jamovi"
 #"org.olivevideoeditor.Olive"
+"org.onlyoffice.desktopeditors"
 #"org.zotero.Zotero"
 "org.zulip.Zulip"
 #"us.zoom.Zoom"
