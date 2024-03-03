@@ -25,7 +25,6 @@ sudo apt update && sudo apt upgrade
 # Packages to install {
 typeset -a REPO_PKGS=(
 "adwaita-qt"
-#"alacritty"
 #"bash-completion" # already installed in Pop!
 "biber"
 "cmake"
@@ -67,8 +66,12 @@ typeset -a REPO_PKGS=(
 "npm"
 "nvme-cli"
 "pdftk"
+"policykit-1-gnome"
+"python3-cffi"
+"python3-cairocffi"
 #"python3-nautilus"
 "python3-pip"
+"python3-xcffib"
 "qt5ct"
 "r-base"
 "ripgrep"
@@ -89,7 +92,6 @@ typeset -a FLATPAKS=(
 "com.github.tchx84.Flatseal"
 "com.google.Chrome"
 "com.mattjakeman.ExtensionManager"
-"com.notesnook.Notesnook"
 "com.obsproject.Studio"
 "com.slack.Slack"
 "com.spotify.Client"
@@ -104,11 +106,8 @@ typeset -a FLATPAKS=(
 "org.gnome.World.PikaBackup"
 "org.inkscape.Inkscape"
 "org.jamovi.jamovi"
-#"org.olivevideoeditor.Olive"
 "org.onlyoffice.desktopeditors"
-#"org.zotero.Zotero"
 "org.zulip.Zulip"
-#"us.zoom.Zoom"
 ) # }
 
 # Install rep packages and flatpaks
@@ -176,10 +175,21 @@ dconf write \
 
 # Make personal directories
 #echo "Create personal directories"
-mkdir -p ~/Documents/{1_projects,2_areas,3_resources,4_archives}
-mkdir -p ~/.local/{bin,build}
-mkdir -p ~/.local/share/{fonts,icons,pop-launcher/scripts}
-mkdir -p ~/.themes
+mkdir -p $HOME/Documents/{1_projects,2_areas,3_resources,4_archives}
+mkdir -p $HOME/.local/{bin,build}
+mkdir -p $HOME/.local/share/{fonts,icons,pop-launcher/scripts}
+mkdir -p $HOME/.themes
+
+# Create .gitignore
+cat > $HOME/.gitignore <<EOF
+.Rproj.user
+.Rhistory
+.Rdata
+.httr-oauth
+.DS_Store
+.quarto
+
+EOF
 
 # Disable these applications from search
 echo "NoDisplay=true" | sudo tee -a \
@@ -214,6 +224,12 @@ exit 0
 #sudo chown gdm:gdm /var/lib/gdm3/.config/monitors.xml
 
 # Syncthing after downloading from website
+# check website for any changes: https://apt.syncthing.net/
+#sudo curl -L -o /etc/apt/keyrings/syncthing-archive-keyring.gpg https://syncthing.net/release-key.gpg
+#echo "deb [signed-by=/etc/apt/keyrings/syncthing-archive-keyring.gpg] https://apt.syncthing.net/ syncthing stable" | sudo tee /etc/apt/sources.list.d/syncthing.list
+#sudo apt update
+#sudo apt install syncthing
+#printf "Package: *\nPin: origin apt.syncthing.net\nPin-Priority: 990\n" | sudo tee /etc/apt/preferences.d/syncthing.pref
 #wget https://raw.githubusercontent.com/syncthing/syncthing/main/etc/linux-systemd/system/syncthing%40.service
 #sudo chown root: syncthing@.service
 #sudo mv syncthing@.service /etc/systemd/system/
