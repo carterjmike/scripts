@@ -59,6 +59,7 @@ typeset -a REPO_PKGS=(
 "libpoppler-cpp-dev"
 "libsecret-1-dev"
 "libssl-dev"
+"libudunits2-dev"
 "libxt-dev"
 #"lm-sensors" # already installed in Pop!
 "ninja-build"
@@ -96,13 +97,16 @@ typeset -a FLATPAKS=(
 "org.audacityteam.Audacity"
 "org.blender.Blender"
 #"org.flameshot.Flameshot"
+#"org.mozilla.firefox"
 "org.gnome.DejaDup"
 "org.gnome.meld"
 "org.gnome.World.PikaBackup"
 "org.inkscape.Inkscape"
 "org.jamovi.jamovi"
+#"org.libreoffice.LibreOffice"
 "org.localsend.localsend_app"
 "org.onlyoffice.desktopeditors"
+"org.zotero.Zotero"
 "org.zulip.Zulip"
 ) # }
 
