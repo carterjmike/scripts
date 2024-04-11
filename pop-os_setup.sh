@@ -96,7 +96,6 @@ typeset -a FLATPAKS=(
 #"net.codeindustry.MasterPDFEditor"
 "org.audacityteam.Audacity"
 "org.blender.Blender"
-#"org.flameshot.Flameshot"
 #"org.mozilla.firefox"
 "org.gnome.DejaDup"
 "org.gnome.meld"
