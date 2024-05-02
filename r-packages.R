@@ -44,6 +44,7 @@ pkgs <- c(
   "languageserver",
   "linl",
   "markdown",
+  "marginaleffects",
   "MBESS",
   "metafor",
   "miniUI",
