@@ -102,6 +102,7 @@ typeset -a FLATPAKS=(
 "org.gnome.World.PikaBackup"
 "org.inkscape.Inkscape"
 "org.jamovi.jamovi"
+"org.kde.okular"
 #"org.libreoffice.LibreOffice"
 "org.localsend.localsend_app"
 "org.onlyoffice.desktopeditors"
@@ -189,6 +190,12 @@ cat > $HOME/.gitignore <<EOF
 .quarto
 
 EOF
+
+# Systemd services, sockets, timers
+sudo systemctl enable --now fstrim.timer
+#sudo systemctl disable --now cups.service
+#sudo systemctl enable --now cups.socket
+#sudo systemctl restart cups-browsed.service  # can fix printer issue
 
 # Disable these applications from search
 echo "NoDisplay=true" | sudo tee -a \
