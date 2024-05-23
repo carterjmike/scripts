@@ -18,6 +18,7 @@ pkgs <- c(
   "emmeans",
   "devtools",
   "diffdf",
+  "duckdb",
   "faux",
   "flextable",
   "fontawesome",
