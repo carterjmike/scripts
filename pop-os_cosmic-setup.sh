@@ -24,17 +24,13 @@ sudo apt update && sudo apt upgrade
 
 # Packages to install {
 typeset -a REPO_PKGS=(
-"adwaita-qt"
-#"bash-completion" # already installed in Pop!
+#"bash-completion" # already installed in Cosmic
 "biber"
 "cmake"
-"dconf-editor"
 "ffmpeg"
 "fzf"
 "gettext"
 "gir1.2-gtop-2.0"
-"gnome-sushi"
-"gnome-tweaks"
 "gpick"
 "hplip"
 "imagemagick"
@@ -61,13 +57,12 @@ typeset -a REPO_PKGS=(
 "libssl-dev"
 "libudunits2-dev"
 "libxt-dev"
-#"lm-sensors" # already installed in Pop!
+#"lm-sensors" # already installed in Cosmic
 "ninja-build"
 "nodejs"
 "npm"
 "nvme-cli"
 "pdftk"
-#"python3-nautilus"
 "qt5ct"
 "r-base"
 "ripgrep"
@@ -80,17 +75,20 @@ typeset -a REPO_PKGS=(
 "tree"
 "ttf-mscorefonts-installer"
 "webp-pixbuf-loader"
+"xclip"
+#"xsel"
 #"zsh"
 ) # }
 
 # Flatpaks to install {
 typeset -a FLATPAKS=(
 "com.github.tchx84.Flatseal"
-"com.google.Chrome"
 "com.obsproject.Studio"
 "com.slack.Slack"
 "com.spotify.Client"
 #"io.github.alainm23.planify"
+"io.github.elevenhsoft.WebApps"
+"io.github.wiiznokes.fan-control"
 "io.mpv.Mpv"
 "org.audacityteam.Audacity"
 "org.blender.Blender"
@@ -100,7 +98,7 @@ typeset -a FLATPAKS=(
 "org.gnome.World.PikaBackup"
 "org.inkscape.Inkscape"
 "org.jamovi.jamovi"
-"org.kde.okular"
+#"org.kde.okular"
 #"org.libreoffice.LibreOffice"
 "org.localsend.localsend_app"
 "org.onlyoffice.desktopeditors"
