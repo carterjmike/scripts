@@ -82,13 +82,14 @@ typeset -a REPO_PKGS=(
 
 # Flatpaks to install {
 typeset -a FLATPAKS=(
+#"app.drey.Elastic"
 "com.github.tchx84.Flatseal"
 "com.obsproject.Studio"
 "com.slack.Slack"
 "com.spotify.Client"
 #"io.github.alainm23.planify"
-"io.github.elevenhsoft.WebApps"
-"io.github.wiiznokes.fan-control"
+#"io.github.elevenhsoft.WebApps"
+#"io.github.wiiznokes.fan-control"
 "io.mpv.Mpv"
 "org.audacityteam.Audacity"
 "org.blender.Blender"
@@ -97,7 +98,7 @@ typeset -a FLATPAKS=(
 "org.gnome.meld"
 "org.gnome.World.PikaBackup"
 "org.inkscape.Inkscape"
-"org.jamovi.jamovi"
+#"org.jamovi.jamovi"
 #"org.kde.okular"
 #"org.libreoffice.LibreOffice"
 "org.localsend.localsend_app"
@@ -116,9 +117,9 @@ flatpak install flathub ${FLATPAKS[*]} -y
 echo
 
 # Refresh font cache to jamovi
-echo "Refresh font cache for jamovi"
-flatpak run --command=fc-cache org.jamovi.jamovi -f -v
-echo
+#echo "Refresh font cache for jamovi"
+#flatpak run --command=fc-cache org.jamovi.jamovi -f -v
+#echo
 
 # Make personal directories
 #echo "Create personal directories"
@@ -171,6 +172,9 @@ exit 0
 #echo
 #echo "Changing shell to zsh"
 #chsh -s $(which zsh)
+
+# for lm-sensors
+#sudo sensors-detect
 
 # sudo dpkg-reconfigure gdm3
 
