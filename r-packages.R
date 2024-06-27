@@ -3,12 +3,12 @@
 #+ Author: Mike Carter
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-##| install {pak} for package management
+# [ INSTALL {pak} FOR PKG MANAGEMENT ]
 install.packages("pak")
 
-##| user packages
+# [[ user packages ]]
 pkgs <- c(
-  #> RCRAN packages
+  # RCRAN packages
   "tidyverse",
   "easystats",
   "afex",
@@ -18,13 +18,14 @@ pkgs <- c(
   "emmeans",
   "devtools",
   "diffdf",
-  "duckdb",
+  #"duckdb",
   "faux",
   "flextable",
   "fontawesome",
   "ftExtra",
   "GGally",
   "gganimate",
+  "ggdist",
   "ggforce",
   "ggfortify",
   "ggrain",
@@ -44,8 +45,10 @@ pkgs <- c(
   "knitr",
   "languageserver",
   "linl",
+  "lme4",
   "markdown",
   "marginaleffects",
+  "marquee",
   "MBESS",
   "metafor",
   "miniUI",
@@ -60,6 +63,7 @@ pkgs <- c(
   "pwrss",
   "qqplotr",
   "quarto",
+  "readODS",
   "remotes",
   "renv",
   "rio",
@@ -72,6 +76,7 @@ pkgs <- c(
   "superb",
   "Superpower",
   "sysfonts",
+  "tidybayes",
   "TOSTER",
   "trackdown",
   "usethis",
@@ -79,7 +84,7 @@ pkgs <- c(
   "workflowr",
   "WRS2",
   "yaml",
-  #> Github or development versions
+  # Github or development versions
   "cran/retimes@0.1-2", # archived package workaround
   "crsh/citr",
   "crsh/papaja@devel",
