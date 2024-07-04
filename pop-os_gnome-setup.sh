@@ -24,7 +24,6 @@ sudo apt update && sudo apt upgrade
 
 # Packages to install {
 typeset -a REPO_PKGS=(
-"adwaita-qt"
 #"bash-completion" # already installed in Pop!
 "biber"
 "cmake"
@@ -80,20 +79,23 @@ typeset -a REPO_PKGS=(
 "tree"
 "ttf-mscorefonts-installer"
 "webp-pixbuf-loader"
+"xclip"
+#"xsel"
 #"zsh"
 ) # }
 
 # Flatpaks to install {
 typeset -a FLATPAKS=(
+#"app.drey.Elastic"
 "com.github.tchx84.Flatseal"
-"com.google.Chrome"
 "com.mattjakeman.ExtensionManager"
 "com.obsproject.Studio"
 "com.slack.Slack"
 "com.spotify.Client"
-"io.github.alainm23.planify"
+#"io.github.alainm23.planify"
+#"io.github.elevenhsoft.WebApps"
+#"io.github.wiiznokes.fan-control"
 "io.mpv.Mpv"
-#"net.codeindustry.MasterPDFEditor"
 "org.audacityteam.Audacity"
 "org.blender.Blender"
 #"org.mozilla.firefox"
