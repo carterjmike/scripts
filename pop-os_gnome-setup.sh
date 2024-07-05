@@ -242,8 +242,7 @@ exit 0
 #sudo chown root: syncthing@.service
 #sudo mv syncthing@.service /etc/systemd/system/
 #sudo systemctl daemon-reload
-#sudo systemctl enable syncthing@mjc
-#sudo systemctl start syncthing@mjc
+#sudo systemctl enable --now syncthing@mjc
 # then go to localhost:8384/
 
 # Notes on Julia install

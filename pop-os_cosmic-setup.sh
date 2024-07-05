@@ -24,7 +24,7 @@ sudo apt update && sudo apt upgrade
 
 # Packages to install {
 typeset -a REPO_PKGS=(
-#"bash-completion" # already installed in Cosmic
+#"bash-completion" # already installed in Pop!
 "biber"
 "cmake"
 "ffmpeg"
@@ -57,7 +57,7 @@ typeset -a REPO_PKGS=(
 "libssl-dev"
 "libudunits2-dev"
 "libxt-dev"
-#"lm-sensors" # already installed in Cosmic
+#"lm-sensors" # already installed in Pop!
 "ninja-build"
 "nodejs"
 "npm"
@@ -193,8 +193,7 @@ exit 0
 #sudo chown root: syncthing@.service
 #sudo mv syncthing@.service /etc/systemd/system/
 #sudo systemctl daemon-reload
-#sudo systemctl enable syncthing@mjc
-#sudo systemctl start syncthing@mjc
+#sudo systemctl enable --now syncthing@mjc
 # then go to localhost:8384/
 
 # Notes on Julia install
