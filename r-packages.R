@@ -3,7 +3,7 @@
 #+ Author: Mike Carter
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-# [ INSTALL {pak} FOR PKG MANAGEMENT ]
+# [[ INSTALL {pak} FOR PKG MANAGEMENT ]]
 install.packages("pak")
 
 # [[ user packages ]]
@@ -92,11 +92,9 @@ pkgs <- c(
   "giocomai/ganttrify",
   "GRousselet/rogme",
   "hrbrmstr/hrbragg",
-  "ismayc/thesisdown",
   "langenberg/powerANOVA",
   "liamgilbey/ggwaffle",
   "paleolimbot/rbbt",
-  "paezha/macdown",
   "profandyfield/discovr",
   "vincentarelbundock/tinytable" # already on CRAN but being actively developed
 )
