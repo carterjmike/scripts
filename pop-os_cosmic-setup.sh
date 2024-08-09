@@ -24,14 +24,12 @@ sudo apt update && sudo apt upgrade
 
 # Packages to install {
 typeset -a REPO_PKGS=(
-#"bash-completion" # already installed in Pop!
 "biber"
 "cmake"
+"exfatprogs"
 "ffmpeg"
 "fzf"
-"gettext"
 "gir1.2-gtop-2.0"
-"gpick"
 "hplip"
 "imagemagick"
 "jags"
@@ -40,7 +38,6 @@ typeset -a REPO_PKGS=(
 "libfftw3-dev"
 "libfontconfig1-dev"
 "libfribidi-dev"
-"libgconf-2-4"
 "libgdal-dev"
 "libgit2-dev"
 "libgmp-dev"
@@ -57,12 +54,11 @@ typeset -a REPO_PKGS=(
 "libssl-dev"
 "libudunits2-dev"
 "libxt-dev"
-#"lm-sensors" # already installed in Pop!
 "ninja-build"
 "nodejs"
 "npm"
 "nvme-cli"
-"pdftk"
+"pdftk-java"
 "python3-pip"
 "python3-venv"
 "qt5ct"
@@ -71,12 +67,10 @@ typeset -a REPO_PKGS=(
 "sane"
 "smartmontools"
 "stow"
-#"synaptic"
 "system76-keyboard-configurator"
 "texlive-full"
 "tree"
 "ttf-mscorefonts-installer"
-"webp-pixbuf-loader"
 "xclip"
 #"xsel"
 #"zsh"
@@ -90,20 +84,18 @@ typeset -a FLATPAKS=(
 "com.slack.Slack"
 "com.spotify.Client"
 "dev.edfloreshz.Tasks"
-#"io.github.alainm23.planify"
-#"io.github.elevenhsoft.WebApps"
-#"io.github.wiiznokes.fan-control"
+"io.github.elevenhsoft.WebApps"
+"io.github.wiiznokes.fan-control"
 "io.mpv.Mpv"
 "org.audacityteam.Audacity"
 "org.blender.Blender"
-#"org.mozilla.firefox"
 "org.gnome.DejaDup"
 "org.gnome.meld"
 "org.gnome.World.PikaBackup"
 "org.inkscape.Inkscape"
 #"org.jamovi.jamovi"
 "org.kde.okular"
-#"org.libreoffice.LibreOffice"
+"org.libreoffice.LibreOffice"
 "org.localsend.localsend_app"
 "org.standardnotes.standardnotes"
 "org.onlyoffice.desktopeditors"
@@ -248,4 +240,10 @@ exit 0
 #EOF
 
 #chmod +x ~/.local/share/pop-launcher/scripts/poweroff.sh
+
+#appimages
+# mkdir -pv ~/.appimage
+# ./filename.AppImage --appimage-extract
+# there will be a .desktop file can modify in there and move to ~/.local/share/applications/
+# move icons from extracted appimage to ~/.local/share/icons
 
