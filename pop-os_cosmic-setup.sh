@@ -34,6 +34,7 @@ typeset -a REPO_PKGS=(
 "hplip"
 "imagemagick"
 "jags"
+"just"
 "libcairo2-dev"
 "libcurl4-openssl-dev"
 "libfftw3-dev"

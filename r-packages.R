@@ -38,6 +38,7 @@ pkgs <- c(
   "googledrive",
   "grateful",
   "gt",
+  ""GWalkR",
   "here",
   "Hmisc",
   "hrbrthemes",
