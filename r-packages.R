@@ -20,7 +20,6 @@ pkgs <- c(
   "diffdf",
   #"duckdb",
   "faux",
-  "flextable",
   "fontawesome",
   "ftExtra",
   "GGally",
@@ -28,7 +27,6 @@ pkgs <- c(
   "ggdist",
   "ggforce",
   "ggfortify",
-  "ggrain",
   "ggpath",
   "ggpmisc",
   "ggpp",
@@ -37,8 +35,6 @@ pkgs <- c(
   "ggResidpanel",
   "googledrive",
   "grateful",
-  "gt",
-  "GWalkR",
   "here",
   "Hmisc",
   "hrbrthemes",
@@ -47,7 +43,6 @@ pkgs <- c(
   "kableExtra",
   "knitr",
   "languageserver",
-  "linl",
   "lme4",
   "markdown",
   "marginaleffects",
@@ -57,7 +52,6 @@ pkgs <- c(
   "miniUI",
   "modelsummary",
   "MOTE",
-  "pagedown",
   "patchwork",
   "preregr",
   "prismatic",
@@ -80,17 +74,17 @@ pkgs <- c(
   "Superpower",
   "sysfonts",
   "tidybayes",
+  "tinytable",
   "TOSTER",
   "trackdown",
   "usethis",
-  "vitae",
   "workflowr",
   "WRS2",
   "yaml",
   # Github or development versions
   "cran/retimes@0.1-2", # archived package workaround
-  "crsh/citr",
-  "crsh/papaja@devel",
+  #"crsh/citr",
+  #"crsh/papaja@devel",
   "gadenbuie/rsthemes",
   "giocomai/ganttrify",
   "GRousselet/rogme",
@@ -99,7 +93,7 @@ pkgs <- c(
   "langenberg/powerANOVA",
   "liamgilbey/ggwaffle",
   "paleolimbot/rbbt",
-  "profandyfield/discovr",
-  "vincentarelbundock/tinytable" # already on CRAN but being actively developed
+  "profandyfield/discovr"
 )
 pak::pkg_install(pkgs)
+

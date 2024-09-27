@@ -83,15 +83,15 @@ typeset -a REPO_PKGS=(
 typeset -a FLATPAKS=(
 #"app.drey.Elastic"
 "com.github.tchx84.Flatseal"
-"com.obsproject.Studio"
+#"com.obsproject.Studio"
 "com.slack.Slack"
 "com.spotify.Client"
 "dev.edfloreshz.Tasks"
 "io.github.elevenhsoft.WebApps"
 "io.github.wiiznokes.fan-control"
 "io.mpv.Mpv"
-"org.audacityteam.Audacity"
-"org.blender.Blender"
+#"org.audacityteam.Audacity"
+#"org.blender.Blender"
 "org.gnome.DejaDup"
 "org.gnome.meld"
 "org.gnome.World.PikaBackup"
@@ -100,7 +100,7 @@ typeset -a FLATPAKS=(
 "org.kde.okular"
 "org.libreoffice.LibreOffice"
 "org.localsend.localsend_app"
-"org.standardnotes.standardnotes"
+#"org.standardnotes.standardnotes"
 "org.onlyoffice.desktopeditors"
 "org.zotero.Zotero"
 "org.zulip.Zulip"
@@ -125,7 +125,7 @@ echo
 mkdir -p $HOME/Documents/{1_projects,2_areas,3_resources,4_archives}
 mkdir -p $HOME/.local/{bin,build}
 mkdir -p $HOME/.local/share/{fonts,icons,pop-launcher/scripts}
-mkdir -p $HOME/.themes
+#mkdir -p $HOME/.themes
 
 # Create .gitignore
 cat > $HOME/.gitignore <<EOF
