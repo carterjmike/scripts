@@ -249,3 +249,5 @@ exit 0
 # there will be a .desktop file can modify in there and move to ~/.local/share/applications/
 # move icons from extracted appimage to ~/.local/share/icons
 
+# tree-sitter CLI for neovim
+#cargo install --locked tree-sitter-cli
