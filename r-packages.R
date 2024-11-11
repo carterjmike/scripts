@@ -19,7 +19,7 @@ pkgs <- c(
   "devtools",
   "diffdf",
   #"duckdb",
-  "faux",
+  #"faux",
   "fontawesome",
   "ftExtra",
   "GGally",
@@ -85,6 +85,7 @@ pkgs <- c(
   "cran/retimes@0.1-2", # archived package workaround
   #"crsh/citr",
   #"crsh/papaja@devel",
+  "debruine/faux",
   "gadenbuie/rsthemes",
   "giocomai/ganttrify",
   "GRousselet/rogme",
