@@ -26,6 +26,7 @@ typeset -a FLATPAKS=(
 "org.blender.Blender"
 "org.gnome.DejaDup"
 "org.gnome.meld"
+"org.gnome.Papers"
 "org.gnome.World.PikaBackup"
 "org.inkscape.Inkscape"
 #"org.jamovi.jamovi"
