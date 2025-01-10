@@ -50,6 +50,7 @@ pkgs <- c(
   "MBESS",
   "metafor",
   "miniUI",
+  "MKpower",
   "modelsummary",
   "MOTE",
   "patchwork",
