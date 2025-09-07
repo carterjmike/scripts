@@ -57,6 +57,7 @@ pkgs <- c(
   "patchwork",
   "preregr",
   "prismatic",
+  "psych",
   "puniform",
   "pwr",
   "pwrss",
@@ -100,4 +101,3 @@ pkgs <- c(
   "profandyfield/discovr"
 )
 pak::pkg_install(pkgs)
-
