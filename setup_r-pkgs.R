@@ -3,8 +3,9 @@
 #+ Author: Mike Carter
 #+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-# [[ user packages ]]
-pkgs <- c(
+install.packages("pak")
+
+cran <- c(
   # RCRAN packages
   "tidyverse",
   "easystats",
@@ -34,7 +35,7 @@ pkgs <- c(
   "grateful",
   "here",
   "Hmisc",
-  "hrbrthemes",
+  #"hrbrthemes",
   "infer",
   "interactionR",
   "kableExtra",
@@ -63,7 +64,6 @@ pkgs <- c(
   "remotes",
   "renv",
   "rio",
-  "rix",
   "rmarkdown",
   "robust",
   "Routliers",
@@ -81,8 +81,11 @@ pkgs <- c(
   "usethis",
   "workflowr",
   "WRS2",
-  "yaml",
-  # Github or development versions
+  "yaml"
+)
+pak::pkg_install(cran)
+
+repos <- c(
   "cran/retimes@0.1-2", # archived package workaround
   "gadenbuie/rsthemes",
   "giocomai/ganttrify",
@@ -97,4 +100,4 @@ pkgs <- c(
   "scienceverse/papercheck",
   "scienceverse/scienceverse"
 )
-pak::pkg_install(pkgs)
+pak::pkg_install(repos)
