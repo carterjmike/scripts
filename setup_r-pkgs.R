@@ -1,7 +1,7 @@
-#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-#+ Script to install r packages on fresh install
-#+ Author: Mike Carter
-#+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#---------------------------------------------------------------
+#-- [ R PACKAGE INSTALL SCRIPT ]
+#-- Author: Mike Carter
+#---------------------------------------------------------------
 
 install.packages("pak")
 
@@ -35,7 +35,6 @@ cran <- c(
   "grateful",
   "here",
   "Hmisc",
-  #"hrbrthemes",
   "infer",
   "interactionR",
   "kableExtra",
@@ -55,6 +54,7 @@ cran <- c(
   "preregr",
   "prismatic",
   "psych",
+  "psychmeta",
   "puniform",
   "pwr",
   "pwrss",
@@ -97,7 +97,7 @@ repos <- c(
   "paleolimbot/rbbt",
   "profandyfield/discovr",
   "scienceverse/faux",
-  "scienceverse/papercheck",
+  "scienceverse/metacheck",
   "scienceverse/scienceverse"
 )
 pak::pkg_install(repos)
