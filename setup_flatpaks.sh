@@ -13,27 +13,26 @@
 
 # Flatpaks to install {
 typeset -a FLATPAKS=(
-#"app.drey.Elastic"
 "com.github.tchx84.Flatseal"
-#"com.obsproject.Studio"
+"com.obsproject.Studio"
 "com.slack.Slack"
 "com.spotify.Client"
 #"dev.edfloreshz.Tasks"
 #"io.github.elevenhsoft.WebApps"
-"io.github.JakubMelka.Pdf4qt"
+#"io.github.JakubMelka.Pdf4qt"
 #"io.github.wiiznokes.fan-control"
 "io.mpv.Mpv"
-#"org.audacityteam.Audacity"
+"org.audacityteam.Audacity"
 "org.blender.Blender"
 #"org.gnome.DejaDup"
 "org.gnome.meld"
-"org.gnome.Papers"
+#"org.gnome.Papers"
 #"org.gnome.World.PikaBackup"
 "org.inkscape.Inkscape"
 #"org.jamovi.jamovi"
 #"org.jaspstats.JASP"
 #"org.localsend.localsend_app"
-#"org.onlyoffice.desktopeditors"
+"org.onlyoffice.desktopeditors"
 "org.zotero.Zotero"
 "org.zulip.Zulip"
 ) # }
@@ -55,7 +54,3 @@ sleep 2
 echo "Exiting..."
 sleep 1
 exit 0
-
-
-
-

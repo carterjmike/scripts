@@ -11,11 +11,17 @@
 # installer (https://www.archlabslinux.com) and the Arch Wiki
 # -------------------------------------------------------
 
+# Setup to use current R version from CRAN
+echo
+wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
+echo
+sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
+
 # Setup to use r-rig to manage R installations
-echo
-`which sudo` curl -L https://rig.r-pkg.org/deb/rig.gpg -o /etc/apt/trusted.gpg.d/rig.gpg
-echo
-`which sudo` sh -c 'echo "deb http://rig.r-pkg.org/deb rig main" > /etc/apt/sources.list.d/rig.list'
+#echo
+#`which sudo` curl -L https://rig.r-pkg.org/deb/rig.gpg -o /etc/apt/trusted.gpg.d/rig.gpg
+#echo
+#`which sudo` sh -c 'echo "deb http://rig.r-pkg.org/deb rig main" > /etc/apt/sources.list.d/rig.list'
 
 # Check if there are any packages to upgrade
 echo
@@ -57,6 +63,7 @@ typeset -a REPO_PKGS=(
 "libudunits2-dev"
 "libxt-dev"
 "ninja-build"
+"nvme-cli"
 #"nodejs"
 #"npm"
 "nvme-cli"
@@ -64,17 +71,16 @@ typeset -a REPO_PKGS=(
 "python3-pynvim"
 "qt5ct"
 "qt6ct"
-"r-rig"
+"r-base"
+#"r-rig"
 "ripgrep"
 #"sane"
 "smartmontools"
 "stow"
 "system76-keyboard-configurator"
 "texlive-full"
-"tree"
 "ttf-mscorefonts-installer"
-"xclip"
-#"xsel"
+"wl-clipboard"
 ) # }
 
 # Install repo packages
@@ -129,29 +135,17 @@ exit 0
 
 
 # SOME NOTES...
-#
-# Change shell to zsh
-#echo
-#echo "Changing shell to zsh"
-#chsh -s $(which zsh)
-
 # for lm-sensors
 #sudo sensors-detect
 
-# sudo dpkg-reconfigure gdm3
-
-# Fix login to be on primary monitor
-#sudo cp ~/.config/monitors.xml /var/lib/gdm3/.config/
-#sudo chown gdm:gdm /var/lib/gdm3/.config/monitors.xml
-
-# Syncthing after downloading from website
+# Syncthing after downloading from website - updated instructions to stable v2
 # check website for any changes: https://apt.syncthing.net/
 #sudo curl -L -o /etc/apt/keyrings/syncthing-archive-keyring.gpg https://syncthing.net/release-key.gpg
-#echo "deb [signed-by=/etc/apt/keyrings/syncthing-archive-keyring.gpg] https://apt.syncthing.net/ syncthing stable" | sudo tee /etc/apt/sources.list.d/syncthing.list
+#echo "deb [signed-by=/etc/apt/keyrings/syncthing-archive-keyring.gpg] https://apt.syncthing.net/ syncthing stable-v2" | sudo tee /etc/apt/sources.list.d/syncthing.list
 #sudo apt update
 #sudo apt install syncthing
 #printf "Package: *\nPin: origin apt.syncthing.net\nPin-Priority: 990\n" | sudo tee /etc/apt/preferences.d/syncthing.pref
-#wget https://raw.githubusercontent.com/syncthing/syncthing/main/etc/linux-systemd/system/syncthing%40.service
+#wget https://raw.githubusercontent.com/syncthing/syncthing/refs/heads/main/etc/linux-systemd/system/syncthing%40.service
 #sudo chown root: syncthing@.service
 #sudo mv syncthing@.service /etc/systemd/system/
 #sudo systemctl daemon-reload
@@ -164,60 +158,9 @@ exit 0
 # sudo cp -r julia-X.X.X /opt/
 # sudo ln -s /opt/julia-X.X.X/bin/julia /usr/local/bin/julia
 
-# wget https://raw.githubusercontent.com/qtile/qtile/master/resources/qtile.desktop
-# Move qtile desktop file to /usr/share/xsessions/
-
 # How to revert a package back to automatically installed if the status
 # switches to manually installed
 # sudo apt-mark auto PACKAGE
 
-
-# OLD STUFF...
-#
-# Packages to remove {
-#typeset -a RM_PKGS=(
-#"firefox"
-#"gedit"
-#"totem"
-#) # }
-
-# Remove some packages
-#echo
-#echo "Removing some packages"
-#sudo apt remove ${RM_PKGS[*]} -y
-#echo
-#echo "Clean up packages no longer needed"
-#sudo apt autoremove -y
-
-# Create various files in home folder
-#echo "Create some files..."
-# Create shutdown script for pop-launcher but make poweroff
-# rather than power off a keyword
-#cat > ~/.local/share/pop-launcher/scripts/poweroff.sh <<EOF
-#!/bin/sh
-#
-# name: Power off
-# icon: system-shutdown
-# description: Power off the system
-# keywords: poweroff shutdown
-
-#gnome-session-quit --power-off
-
-#EOF
-
-#chmod +x ~/.local/share/pop-launcher/scripts/poweroff.sh
-
-#appimages
-# mkdir -pv ~/.appimage
-# ./filename.AppImage --appimage-extract
-# there will be a .desktop file can modify in there and move to ~/.local/share/applications/
-# move icons from extracted appimage to ~/.local/share/icons
-
 # tree-sitter CLI for neovim
 #cargo install --locked tree-sitter-cli
-
-
-
-
-
-
