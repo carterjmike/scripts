@@ -66,6 +66,7 @@ cran <- c(
   "rio",
   "rmarkdown",
   "robust",
+  "robustlmm",
   "Routliers",
   "scales",
   "sjPlot",
@@ -87,7 +88,6 @@ pak::pkg_install(cran)
 
 repos <- c(
   "cran/retimes@0.1-2", # archived package workaround
-  "gadenbuie/rsthemes",
   "giocomai/ganttrify",
   "GRousselet/rogme",
   "hrbrmstr/hrbragg",
