@@ -1,53 +1,36 @@
 #!/bin/bash
-#set -e
+set -euo pipefail
 
-# -------------------------------------------------------
-# A script to automate personal package installation 
+# ------------------------------------------------
+# A script to automate package installation
 # after a fresh Arch Linux installation
-#
-# Some ideas and code adapted from other sources, mainly 
-# the Arch Wiki and the ArchLabs Linux installer
-# (https://bitbucket.org/archlabslinux/installer) 
-#
-# Written by Michael Carter
-# -------------------------------------------------------
+# ------------------------------------------------
 
-# Run any updates if needed
+# Update system if needed
 echo
-echo "Running any available updates..."
+echo "[*] CHECKING FOR UPDATES..."
 sudo pacman -Syu
 
-# System, window manger, and program packages to install {
-typeset -a MAIN_PKGS=(
-"arandr"
-"autorandr"
+# Main packages to install {
+declare -a MAIN_PKGS=(
 "bash-completion"
-"bat"
 "blas-openblas"
 "blas64-openblas"
 "bluez"
 "bluez-utils"
+"bob"
 "brightnessctl"
-"btop"
-"curl"
-#"dconf-editor"
-"dunst"
-"e2fsprogs"
-"efibootmgr"
-"efivar"
-#"evince"
-"exfatprogs"
-"exfat-utils"
-"feh"
+"easyeffects"
 "ffmpeg"
 "firefox"
+"flatpak"
 "fwupd"
 "fzf"
 "gcc-fortran"
 "gnome-disk-utility"
-"gnome-themes-extra"
-"gpick"
-"gtk-engine-murrine"
+"gnome-keyring"
+#"gnome-themes-extra"
+#"gtk-engine-murrine" # in AUR now?
 "gvfs"
 "hunspell-en_ca"
 "hunspell-en_us"
@@ -58,48 +41,40 @@ typeset -a MAIN_PKGS=(
 "libgit2"
 "libreoffice-fresh"
 "libsecret"
-"linux-headers"
 "lm_sensors"
-"lsb-release"
+"lsb_release"
 "meld"
-"mesa"
 "mpv"
 "network-manager-applet"
 "noto-fonts"
 "noto-fonts-cjk"
 "noto-fonts-emoji"
+"nvme-cli"
+#"nwg-displays"
 "openssh"
+"otf-commit-mono-nerd"
 "pacman-contrib"
+"pamixer"
 "pavucontrol"
-"picom"
+"pdftk"
 "pipewire"
 "pipewire-alsa"
 "pipewire-jack"
 "pipewire-pulse"
 "playerctl"
 "polkit-gnome"
-"python-dbus-next"
-"python-iwlib"
-"python-pip"
-"python-psutil"
-"python-setproctitle"
-"python-pyxdg"
-"python-wheel"
+"python-pynvim"
 "qt5ct"
 "qt6ct"
-"qtile"
 "r"
-"reflector"
 "ripgrep"
 "rofi"
 "rust"
-"scrot"
-"seahorse"
-"smartmontools"
+#"seahorse"
 "stow"
-#"sxhkd"
 "syncthing"
 "system76-firmware"
+"system76-scheduler"
 "texlive-meta"
 "thunar"
 "thunar-archive-plugin"
@@ -109,31 +84,40 @@ typeset -a MAIN_PKGS=(
 "tk"
 "ttf-dejavu"
 "ttf-font-awesome"
-"ttf-jetbrains-mono"
 "ttf-joypixels"
 "ttf-roboto"
 "tumbler"
-"wget"
+"uv"
 "wireplumber"
-"wmctrl"
 "xarchiver"
-"xcb-proto"
-"xcb-util"
-"xcb-util-keysyms"
-"xcb-util-cursor"
-"xcb-util-wm"
-"xclip"
+"xdg-desktop-portal"
+"xdg-desktop-portal-gtk"
+"xdg-desktop-portal-wlr"
 "xdg-user-dirs"
 "xdg-utils"
-"xdotool"
-"xf86-input-libinput"
-#"xf86-video-amdgpu"
-#"xf86-video-intel"
-"xorg"
-"xorg-xinit"
+"xorg-xwayland"
 "zathura"
 "zathura-pdf-mupdf"
 ) # }
+
+# MangoWC repo dependencies to install {
+declare -a MANGO_PKGS=(
+"cliphist"
+"grim"
+"satty"
+"slurp"
+"sox"
+"swaybg"
+"swayidle"
+"swaync"
+"swayosd"
+"waybar"
+"wl-clipboard"
+"wl-clip-persist"
+"wlsunset"
+"wlr-randr"
+) # }
+# the above does not include dependencies from the AUR
 
 # Printer packages to install {
 #typeset -a PRINT_PKGS=(
@@ -151,53 +135,97 @@ typeset -a MAIN_PKGS=(
 
 # Install packages
 echo
-echo "Installing main packages..."
-sudo pacman -S ${MAIN_PKGS[*]} --needed
+echo "[*] INSTALLING MAIN PACKAGES..."
+sudo pacman -S --needed "${MAIN_PKGS[@]}"
+echo
+echo
+echo "[*] INSTALLING MANGOWC PACKAGES..."
+sudo pacman -S --needed "${MANGO_PKGS[@]}"
 echo
 #echo "Installing packages for printing..."
 #sudo pacman -S ${PRINT_PKGS[*]} --needed
 #sudo systemctl enable --now cups.socket
 #echo
 
+
 # Create, modify, or overwrite some files
 echo "Creating, modifying, or overwriting some files..."
 
 # /etc/pam.d/login
 sudo sed -i \
-'/auth       include      system-local-login/a auth       optional     pam_gnome_keyring.so' \
-/etc/pam.d/login
+'/^[[:space:]]*auth[[:space:]]\+include[[:space:]]\+system-local-login$/{
+  /pam_gnome_keyring\.so/!a auth       optional     pam_gnome_keyring.so
+}' /etc/pam.d/login
 
 sudo sed -i \
-'/session    include      system-local-login/a session    optional     pam_gnome_keyring.so auto_start' \
-/etc/pam.d/login
+'/^[[:space:]]*session[[:space:]]\+include[[:space:]]\+system-local-login$/{
+  /pam_gnome_keyring\.so/!a session    optional     pam_gnome_keyring.so auto_start
+}' /etc/pam.d/login
 
-# Enable some services
+
+# Enable some services for main packages
 echo
-echo "Enabling some services..."
+echo "[*] ENABLING SOME SERVICES..."
 sudo systemctl enable --now bluetooth.service
-#sudo sed -i 's/'#AutoEnable=false'/'AutoEnable=true'/g' /etc/bluetooth/main.conf
-sudo systemctl enable --now avahi-daemon.service
-sudo systemtl enable --now system76-firmware-daemon.service
+#sudo sed -i 's/^#\?AutoEnable=false/AutoEnable=true/' /etc/bluetooth/main.conf
+#sudo systemctl enable --now avahi-daemon.service
+sudo systemctl enable --now system76-firmware-daemon.service
 echo
 
-# Create some directories
-echo "Creating some personal directories..."
-mkdir -p ~/.local/{bin,build}
-mkdir -p ~/.local/share/{applications,fonts,icons}
-mkdir -p ~/.themes
+# Make personal directories
+echo "[*] CREATE SOME DIRECTORIES..."
+mkdir -p "$HOME"/Documents/{1_projects,2_areas,3_resources,4_archives}
+mkdir -p "$HOME"/.local/{bin,build}
+mkdir -p "$HOME"/.local/share/{fonts,icons}
+mkdir -p "$HOME"/.themes
 
-# Install paru as AUR helper
-echo "Cloning paru repository..."
-cd ~/.local/build && git clone https://aur.archlinux.org/paru.git
+# Create .gitignore - add this into dotfiles
+cat << 'EOF' > "$HOME/.gitignore"
+.Rproj.user
+.Rhistory
+.Rdata
+.httr-oauth
+.DS_Store
+.quarto
+EOF
+
+#-- AUR Packages
+echo "[*] INSTALLING PARU AS AUR HELPER..."
+cd "$HOME"/.local/build && git clone https://aur.archlinux.org/paru.git
 echo
-echo "Building and installing paru..."
 cd paru && makepkg -si
-cd
+cd "$HOME"
+
+# AUR S76 packages and MangoWC dependencies to install {
+declare -a AUR_PKGS=(
+"system76-driver"
+"system76-acpi-dkms"
+"system76-dkms"
+"system76-io-dkms"
+"system76-power"
+"system76-keyboard-configurator"
+"firmware-manager"
+"dimland-git"
+"sway-audio-idle-inhibit-git"
+"swaylock-effects-git"
+"wlogout"
+"wlr-dpms"
+) # }
+
+echo "[*] INSTALLING AUR PACKAGES..."
+paru -S "${AUR_PKGS[@]}"
+echo
+
+echo "[*] ENABLING SOME S76 SERVICES..."
+sudo systemctl enable --now system76.service
+sudo systemctl enable --now com.system76.PowerDaemon.service
+
+echo "[*] INSTALLING MANGOWC..."
+paru -S mangowc-git
+echo
 
 # Exit
-echo
-echo "Installation completed succesfully!"
+echo "[*] ALL SYSTEMS GO!"
 sleep 2
-echo "Exiting..."
 sleep 1
 exit 0
