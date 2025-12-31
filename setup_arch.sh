@@ -200,7 +200,7 @@ declare -a AUR_PKGS=(
 "system76-driver"
 "system76-acpi-dkms"
 "system76-dkms"
-"system76-io-dkms"
+#"system76-io-dkms" #only for thelio
 "system76-power"
 "system76-keyboard-configurator"
 "firmware-manager"
@@ -218,6 +218,7 @@ echo
 echo "[*] ENABLING SOME S76 SERVICES..."
 sudo systemctl enable --now system76.service
 sudo systemctl enable --now com.system76.PowerDaemon.service
+sudo systemctl enable --now charge-thresholds.service #only for lemp13
 
 echo "[*] INSTALLING MANGOWC..."
 paru -S mangowc-git
@@ -225,6 +226,5 @@ echo
 
 # Exit
 echo "[*] ALL SYSTEMS GO!"
-sleep 2
 sleep 1
 exit 0
