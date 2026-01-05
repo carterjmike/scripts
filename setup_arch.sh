@@ -13,6 +13,7 @@ sudo pacman -Syu
 
 # Main packages to install {
 declare -a MAIN_PKGS=(
+"7zip"
 "bash-completion"
 "blas-openblas"
 "blas64-openblas"
@@ -29,8 +30,7 @@ declare -a MAIN_PKGS=(
 "gcc-fortran"
 "gnome-disk-utility"
 "gnome-keyring"
-#"gnome-themes-extra"
-#"gtk-engine-murrine" # in AUR now?
+"gnome-themes-extra"
 "gvfs"
 "hunspell-en_ca"
 "hunspell-en_us"
@@ -41,6 +41,7 @@ declare -a MAIN_PKGS=(
 "libgit2"
 "libreoffice-fresh"
 "libsecret"
+"libxml2"
 "lm_sensors"
 "lsb-release"
 "meld"
@@ -52,6 +53,7 @@ declare -a MAIN_PKGS=(
 "nvme-cli"
 #"nwg-displays"
 "openssh"
+"openssl"
 "otf-commit-mono-nerd"
 "pacman-contrib"
 "pamixer"
@@ -86,6 +88,8 @@ declare -a MAIN_PKGS=(
 "ttf-font-awesome"
 "ttf-roboto"
 "tumbler"
+"udiskie"
+"udisks2"
 "uv"
 "wireplumber"
 "xarchiver"
@@ -95,8 +99,10 @@ declare -a MAIN_PKGS=(
 "xdg-user-dirs"
 "xdg-utils"
 "xorg-xwayland"
+"yazi"
 "zathura"
 "zathura-pdf-mupdf"
+"zed"
 ) # }
 
 # MangoWC repo dependencies to install {
@@ -150,16 +156,16 @@ echo
 # Create, modify, or overwrite some files
 echo "Creating, modifying, or overwriting some files..."
 
-# /etc/pam.d/login
-sudo sed -i \
-'/^[[:space:]]*auth[[:space:]]\+include[[:space:]]\+system-local-login$/{
-  /pam_gnome_keyring\.so/!a auth       optional     pam_gnome_keyring.so
-}' /etc/pam.d/login
+# /etc/pam.d/login - TODO!
+#sudo sed -i \
+#'/^[[:space:]]*auth[[:space:]]\+include[[:space:]]\+system-local-login$/{
+#  /pam_gnome_keyring\.so/!a auth       optional     pam_gnome_keyring.so
+#}' /etc/pam.d/login
 
-sudo sed -i \
-'/^[[:space:]]*session[[:space:]]\+include[[:space:]]\+system-local-login$/{
-  /pam_gnome_keyring\.so/!a session    optional     pam_gnome_keyring.so auto_start
-}' /etc/pam.d/login
+#sudo sed -i \
+#'/^[[:space:]]*session[[:space:]]\+include[[:space:]]\+system-local-login$/{
+#  /pam_gnome_keyring\.so/!a session    optional     pam_gnome_keyring.so auto_start
+#}' /etc/pam.d/login
 
 
 # Enable some services for main packages
@@ -178,7 +184,7 @@ mkdir -p "$HOME"/.local/{bin,build}
 mkdir -p "$HOME"/.local/share/{fonts,icons}
 mkdir -p "$HOME"/.themes
 
-# Create .gitignore - add this into dotfiles
+# Create .gitignore
 cat << 'EOF' > "$HOME/.gitignore"
 .Rproj.user
 .Rhistory
@@ -200,7 +206,7 @@ declare -a AUR_PKGS=(
 "system76-driver"
 "system76-acpi-dkms"
 "system76-dkms"
-#"system76-io-dkms" #only for thelio
+"system76-io-dkms"
 "system76-power"
 "system76-keyboard-configurator"
 "firmware-manager"
@@ -218,13 +224,20 @@ echo
 echo "[*] ENABLING SOME S76 SERVICES..."
 sudo systemctl enable --now system76.service
 sudo systemctl enable --now com.system76.PowerDaemon.service
-sudo systemctl enable --now charge-thresholds.service #only for lemp13
+sudo systemctl enable --now charge-thresholds.service
 
 echo "[*] INSTALLING MANGOWC..."
 paru -S mangowc-git
 echo
 
+# Make libsecret for git credentials - NEED TO CHECK WHETHER THIS IS CORRECT
+# THE CRED HELPER IN DOTFILES DOESN'T MATCH ARCH WIKI
+# git config --global credential.helper /usr/lib/git-core/git-credential-libsecret
+#
+#cd /usr/share/doc/git/contrib/credential/libsecret && sudo make
+
 # Exit
 echo "[*] ALL SYSTEMS GO!"
+sleep 2
 sleep 1
 exit 0
