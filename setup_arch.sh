@@ -156,16 +156,16 @@ echo
 # Create, modify, or overwrite some files
 echo "Creating, modifying, or overwriting some files..."
 
-# /etc/pam.d/login - TODO!
-#sudo sed -i \
-#'/^[[:space:]]*auth[[:space:]]\+include[[:space:]]\+system-local-login$/{
-#  /pam_gnome_keyring\.so/!a auth       optional     pam_gnome_keyring.so
-#}' /etc/pam.d/login
+# /etc/pam.d/login
+sudo sed -i \
+'/^[[:space:]]*auth[[:space:]]\+include[[:space:]]\+system-local-login$/{
+  /pam_gnome_keyring\.so/!a auth       optional     pam_gnome_keyring.so
+}' /etc/pam.d/login
 
-#sudo sed -i \
-#'/^[[:space:]]*session[[:space:]]\+include[[:space:]]\+system-local-login$/{
-#  /pam_gnome_keyring\.so/!a session    optional     pam_gnome_keyring.so auto_start
-#}' /etc/pam.d/login
+sudo sed -i \
+'/^[[:space:]]*session[[:space:]]\+include[[:space:]]\+system-local-login$/{
+  /pam_gnome_keyring\.so/!a session    optional     pam_gnome_keyring.so auto_start
+}' /etc/pam.d/login
 
 
 # Enable some services for main packages
@@ -229,12 +229,6 @@ sudo systemctl enable --now charge-thresholds.service
 echo "[*] INSTALLING MANGOWC..."
 paru -S mangowc-git
 echo
-
-# Make libsecret for git credentials - NEED TO CHECK WHETHER THIS IS CORRECT
-# THE CRED HELPER IN DOTFILES DOESN'T MATCH ARCH WIKI
-# git config --global credential.helper /usr/lib/git-core/git-credential-libsecret
-#
-#cd /usr/share/doc/git/contrib/credential/libsecret && sudo make
 
 # Exit
 echo "[*] ALL SYSTEMS GO!"
