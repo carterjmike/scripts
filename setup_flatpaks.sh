@@ -28,7 +28,7 @@ typeset -a FLATPAKS=(
 #"org.gnome.DejaDup"
 "org.gnome.meld"
 #"org.gnome.Papers"
-#"org.gnome.World.PikaBackup"
+"org.gnome.World.PikaBackup"
 "org.inkscape.Inkscape"
 #"org.jamovi.jamovi"
 #"org.jaspstats.JASP"

@@ -97,14 +97,13 @@ mkdir -p $HOME/.local/share/{fonts,icons}
 #mkdir -p $HOME/.themes
 
 # Create .gitignore
-cat > $HOME/.gitignore <<EOF
+cat << 'EOF' > "$HOME/.gitignore"
 .Rproj.user
 .Rhistory
 .Rdata
 .httr-oauth
 .DS_Store
 .quarto
-
 EOF
 
 # Systemd services, sockets, timers
