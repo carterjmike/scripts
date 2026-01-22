@@ -223,6 +223,7 @@ declare -a AUR_PKGS=(
 "wdisplays-persistent"
 #"wlogout"
 "wlr-dpms"
+"zotero-bin"
 ) # }
 
 echo "[*] INSTALLING AUR PACKAGES..."
