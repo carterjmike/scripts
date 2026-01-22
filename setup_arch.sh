@@ -55,6 +55,7 @@ declare -a MAIN_PKGS=(
 "noto-fonts-cjk"
 "noto-fonts-emoji"
 "nvme-cli"
+"nwg-look"
 "openssh"
 "openssl"
 "otf-commit-mono-nerd"
@@ -237,6 +238,10 @@ sudo systemctl enable --now charge-thresholds.service
 
 echo "[*] INSTALLING MANGOWC..."
 paru -S mangowc-git
+echo
+
+echo "[*] CREATE USER DIRECTORIES"
+xdg-user-dirs-update
 echo
 
 # Exit
