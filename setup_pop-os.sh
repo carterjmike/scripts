@@ -11,11 +11,30 @@
 # installer (https://www.archlabslinux.com) and the Arch Wiki
 # -------------------------------------------------------
 
-# Setup to use current R version from CRAN
+echo "[*] ADDING SOURCES FOR SOME PROGRAMS"
+
+# R
 echo
 wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
 echo
 sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
+
+# Zulip
+echo
+sudo curl -fL -o /etc/apt/trusted.gpg.d/zulip-desktop.asc \
+    https://download.zulip.com/desktop/apt/zulip-desktop.asc
+echo "deb https://download.zulip.com/desktop/apt stable main" | sudo tee /etc/apt/sources.list.d/zulip-desktop.list
+echo
+
+# Zotero
+echo
+curl -sL https://raw.githubusercontent.com/retorquere/zotero-deb/master/install.sh | sudo bash
+echo
+
+# Spotify
+echo
+curl -sS https://download.spotify.com/debian/pubkey_5384CE82BA52C83A.asc | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
+echo "deb https://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 
 # Setup to use r-rig to manage R installations
 #echo
@@ -25,12 +44,13 @@ sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_
 
 # Check if there are any packages to upgrade
 echo
-echo "Checking for and installing any updates..."
+echo "[*] CHECKING FOR UPDATES..."
 sudo apt update && sudo apt upgrade
 
 # Packages to install {
-typeset -a REPO_PKGS=(
+declare -a MAIN_PKGS=(
 "biber"
+"clang"
 "cmake"
 "exfatprogs"
 "ffmpeg"
@@ -41,6 +61,7 @@ typeset -a REPO_PKGS=(
 "jags"
 "just"
 "libcairo2-dev"
+"libclang-dev"
 "libcurl4-openssl-dev"
 "libfftw3-dev"
 "libfontconfig1-dev"
@@ -62,6 +83,8 @@ typeset -a REPO_PKGS=(
 "libssl-dev"
 "libudunits2-dev"
 "libxt-dev"
+"meld"
+"mpv"
 "ninja-build"
 "nvme-cli"
 #"nodejs"
@@ -76,24 +99,27 @@ typeset -a REPO_PKGS=(
 "ripgrep"
 #"sane"
 "smartmontools"
+"spotify-client"
 "stow"
 "system76-keyboard-configurator"
 "texlive-full"
-"ttf-mscorefonts-installer"
+#"ttf-mscorefonts-installer"
 "wl-clipboard"
+"zotero"
+"zulip"
 ) # }
 
 # Install repo packages
 echo
-echo "Installing packages from repository"
-sudo apt install ${REPO_PKGS[*]} -y
+echo "[*] INSTALLING PACKAGES..."
+sudo apt install ${MAIN_PKGS[*]} -y
 
 
 # Make personal directories
 #echo "Create personal directories"
 mkdir -p $HOME/Documents/{1_projects,2_areas,3_resources,4_archives}
 mkdir -p $HOME/.local/{bin,build}
-mkdir -p $HOME/.local/share/{fonts,icons}
+mkdir -p $HOME/.local/share/{applications,fonts,icons}
 #mkdir -p $HOME/.themes
 
 # Create .gitignore
@@ -115,8 +141,6 @@ sudo systemctl enable --now fstrim.timer
 # Disable these applications from search
 echo "NoDisplay=true" | sudo tee -a \
 /usr/share/applications/vim.desktop \
-/usr/share/applications/debian-uxterm.desktop \
-/usr/share/applications/debian-xterm.desktop \
 /usr/share/applications/prerex.desktop \
 /usr/share/applications/vprerex.desktop \
 /usr/share/applications/texdoctk.desktop \
@@ -126,9 +150,9 @@ echo "NoDisplay=true" | sudo tee -a \
 cd /usr/share/doc/git/contrib/credential/libsecret && sudo make
 
 echo
-echo "Installation completed succesfully."
+echo
+echo "[*] ALL SYSTEMS GO!"
 sleep 2
-echo "Exiting..."
 sleep 1
 exit 0
 
