@@ -1,5 +1,5 @@
 #!/bin/bash
-#set -e
+set -euo pipefail
 
 # -------------------------------------------------------
 # A script to automate personal package installation after a fresh
@@ -35,6 +35,10 @@ echo
 echo
 curl -sS https://download.spotify.com/debian/pubkey_5384CE82BA52C83A.asc | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
 echo "deb https://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+
+# Syncthing
+sudo curl -L -o /etc/apt/keyrings/syncthing-archive-keyring.gpg https://syncthing.net/release-key.gpg
+echo "deb [signed-by=/etc/apt/keyrings/syncthing-archive-keyring.gpg] https://apt.syncthing.net/ syncthing stable-v2" | sudo tee /etc/apt/sources.list.d/syncthing.list
 
 # Setup to use r-rig to manage R installations
 #echo
@@ -101,6 +105,7 @@ declare -a MAIN_PKGS=(
 "smartmontools"
 "spotify-client"
 "stow"
+"syncthing"
 "system76-keyboard-configurator"
 "texlive-full"
 #"ttf-mscorefonts-installer"
@@ -132,6 +137,15 @@ cat << 'EOF' > "$HOME/.gitignore"
 .quarto
 EOF
 
+# Syncthing stuff
+echo
+printf "Package: *\nPin: origin apt.syncthing.net\nPin-Priority: 990\n" | sudo tee /etc/apt/preferences.d/syncthing.pref
+wget https://raw.githubusercontent.com/syncthing/syncthing/refs/heads/main/etc/linux-systemd/system/syncthing%40.service
+sudo chown root: syncthing@.service
+sudo mv syncthing@.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable --now syncthing@$USER
+
 # Systemd services, sockets, timers
 sudo systemctl enable --now fstrim.timer
 #sudo systemctl disable --now cups.service
@@ -141,6 +155,9 @@ sudo systemctl enable --now fstrim.timer
 # Disable these applications from search
 echo "NoDisplay=true" | sudo tee -a \
 /usr/share/applications/vim.desktop \
+/usr/share/applications/debian-uxterm.desktop \
+/usr/share/applications/debian-xterm.desktop \
+/usr/share/applications/info.desktop \
 /usr/share/applications/prerex.desktop \
 /usr/share/applications/vprerex.desktop \
 /usr/share/applications/texdoctk.desktop \
@@ -163,16 +180,6 @@ exit 0
 
 # Syncthing after downloading from website - updated instructions to stable v2
 # check website for any changes: https://apt.syncthing.net/
-#sudo curl -L -o /etc/apt/keyrings/syncthing-archive-keyring.gpg https://syncthing.net/release-key.gpg
-#echo "deb [signed-by=/etc/apt/keyrings/syncthing-archive-keyring.gpg] https://apt.syncthing.net/ syncthing stable-v2" | sudo tee /etc/apt/sources.list.d/syncthing.list
-#sudo apt update
-#sudo apt install syncthing
-#printf "Package: *\nPin: origin apt.syncthing.net\nPin-Priority: 990\n" | sudo tee /etc/apt/preferences.d/syncthing.pref
-#wget https://raw.githubusercontent.com/syncthing/syncthing/refs/heads/main/etc/linux-systemd/system/syncthing%40.service
-#sudo chown root: syncthing@.service
-#sudo mv syncthing@.service /etc/systemd/system/
-#sudo systemctl daemon-reload
-#sudo systemctl enable --now syncthing@mjc
 # then go to localhost:8384/
 
 # Notes on Julia install
