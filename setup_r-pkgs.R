@@ -90,7 +90,6 @@ repos <- c(
   "cran/retimes@0.1-2", # archived package workaround
   "giocomai/ganttrify",
   "GRousselet/rogme",
-  #"hrbrmstr/hrbragg",
   "JLSteenwyk/ggpubfigs",
   "langenberg/powerANOVA",
   "liamgilbey/ggwaffle",
