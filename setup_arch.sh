@@ -19,8 +19,10 @@ declare -a MAIN_PKGS=(
 "blas64-openblas"
 "bluez"
 "bluez-utils"
-"bob"
+#"bob"
 "brightnessctl"
+"cliphist"
+"clang"
 "cmake"
 "easyeffects"
 "fd"
@@ -34,6 +36,7 @@ declare -a MAIN_PKGS=(
 "gnome-disk-utility"
 "gnome-keyring"
 "gnome-themes-extra"
+"grim"
 "gvfs"
 "hunspell-en_ca"
 "hunspell-en_us"
@@ -46,6 +49,7 @@ declare -a MAIN_PKGS=(
 "libreoffice-fresh"
 "libsecret"
 "libxml2"
+"llvm"
 "lm_sensors"
 "lsb-release"
 "meld"
@@ -72,10 +76,18 @@ declare -a MAIN_PKGS=(
 "python-pynvim"
 "qt5ct"
 "qt6ct"
+"qtile"
 "r"
 "ripgrep"
 "rofi"
 "rust"
+"satty"
+"slurp"
+"sox"
+"swaybg"
+"swayidle"
+"swaync"
+"swayosd"
 #"seahorse"
 "stow"
 "syncthing"
@@ -97,7 +109,11 @@ declare -a MAIN_PKGS=(
 "udiskie"
 "udisks2"
 "uv"
+"waybar"
 "wireplumber"
+"wl-clipboard"
+"wl-clip-persist"
+"wlr-randr"
 "xarchiver"
 "xdg-desktop-portal"
 "xdg-desktop-portal-gtk"
@@ -110,25 +126,6 @@ declare -a MAIN_PKGS=(
 "zathura-pdf-mupdf"
 "zed"
 ) # }
-
-# MangoWC repo dependencies to install {
-declare -a MANGO_PKGS=(
-"cliphist"
-"grim"
-"satty"
-"slurp"
-"sox"
-"swaybg"
-"swayidle"
-"swaync"
-"swayosd"
-"waybar"
-"wl-clipboard"
-"wl-clip-persist"
-"wlsunset"
-"wlr-randr"
-) # }
-# the above does not include dependencies from the AUR
 
 # Printer packages to install {
 #typeset -a PRINT_PKGS=(
@@ -148,10 +145,6 @@ declare -a MANGO_PKGS=(
 echo
 echo "[*] INSTALLING MAIN PACKAGES..."
 sudo pacman -S --needed "${MAIN_PKGS[@]}"
-echo
-echo
-echo "[*] INSTALLING MANGOWC PACKAGES..."
-sudo pacman -S --needed "${MANGO_PKGS[@]}"
 echo
 #echo "Installing packages for printing..."
 #sudo pacman -S ${PRINT_PKGS[*]} --needed
@@ -187,7 +180,7 @@ echo
 echo "[*] CREATE SOME DIRECTORIES..."
 mkdir -p "$HOME"/Documents/{1_projects,2_areas,3_resources,4_archives}
 mkdir -p "$HOME"/.local/{bin,build}
-mkdir -p "$HOME"/.local/share/{fonts,icons}
+mkdir -p "$HOME"/.local/share/{applications,fonts,icons}
 mkdir -p "$HOME"/.themes
 
 # Create .gitignore
@@ -199,6 +192,13 @@ cat << 'EOF' > "$HOME/.gitignore"
 .DS_Store
 .quarto
 EOF
+
+# Syncthing
+wget https://raw.githubusercontent.com/syncthing/syncthing/refs/heads/main/etc/linux-systemd/system/syncthing%40.service
+sudo chown root: syncthing@.service
+sudo mv syncthing@.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable --now syncthing@$USER
 
 #-- AUR Packages
 echo "[*] INSTALLING PARU AS AUR HELPER..."
@@ -221,7 +221,7 @@ declare -a AUR_PKGS=(
 #"sway-audio-idle-inhibit-git"
 "swaylock-effects-git"
 "udunits"
-"wdisplays-persistent"
+#"wdisplays-persistent"
 #"wlogout"
 "wlr-dpms"
 "zotero-bin"
@@ -235,10 +235,6 @@ echo "[*] ENABLING SOME S76 SERVICES..."
 sudo systemctl enable --now system76.service
 sudo systemctl enable --now com.system76.PowerDaemon.service
 sudo systemctl enable --now charge-thresholds.service
-
-echo "[*] INSTALLING MANGOWC..."
-paru -S mangowc-git
-echo
 
 echo "[*] CREATE USER DIRECTORIES"
 xdg-user-dirs-update
