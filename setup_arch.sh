@@ -215,8 +215,7 @@ cd "$HOME"
 # AUR S76 packages and MangoWC dependencies to install {
 declare -a AUR_PKGS=(
 "system76-driver"
-"system76-acpi-dkms"
-"system76-dkms"
+#"system76-dkms"
 #"system76-io-dkms"
 "system76-power"
 "system76-keyboard-configurator"
