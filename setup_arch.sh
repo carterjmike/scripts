@@ -220,7 +220,7 @@ declare -a AUR_PKGS=(
 "system76-power"
 "system76-keyboard-configurator"
 "firmware-manager"
-"qtile-extra"
+"qtile-extras"
 "swaylock-effects"
 "udunits"
 #"wdisplays-persistent"

@@ -32,9 +32,9 @@ curl -sL https://raw.githubusercontent.com/retorquere/zotero-deb/master/install.
 echo
 
 # Spotify
-echo
-curl -sS https://download.spotify.com/debian/pubkey_5384CE82BA52C83A.asc | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
-echo "deb https://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+# echo
+# curl -sS https://download.spotify.com/debian/pubkey_5384CE82BA52C83A.asc | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
+# echo "deb https://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 
 # Syncthing
 sudo curl -L -o /etc/apt/keyrings/syncthing-archive-keyring.gpg https://syncthing.net/release-key.gpg
@@ -53,6 +53,8 @@ sudo apt update && sudo apt upgrade
 
 # Packages to install {
 declare -a MAIN_PKGS=(
+"7zip"
+"7zip-rar"
 "biber"
 "clang"
 "cmake"
@@ -103,7 +105,7 @@ declare -a MAIN_PKGS=(
 "ripgrep"
 #"sane"
 "smartmontools"
-"spotify-client"
+# "spotify-client"
 "stow"
 "syncthing"
 "system76-keyboard-configurator"

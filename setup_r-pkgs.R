@@ -17,6 +17,7 @@ cran <- c(
   "emmeans",
   "devtools",
   "diffdf",
+  "discovr",
   #"duckdb",
   "fontawesome",
   "ftExtra",
@@ -94,7 +95,6 @@ repos <- c(
   "langenberg/powerANOVA",
   "liamgilbey/ggwaffle",
   "paleolimbot/rbbt",
-  "profandyfield/discovr",
   "scienceverse/faux",
   "scienceverse/metacheck",
   "scienceverse/scienceverse"
