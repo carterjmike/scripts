@@ -14,37 +14,23 @@ set -euo pipefail
 echo "[*] ADDING SOURCES FOR SOME PROGRAMS"
 
 # R
+ From CRAN for Ubuntu
 echo
 wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
 echo
 sudo add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/"
 
-# Zulip
-echo
-sudo curl -fL -o /etc/apt/trusted.gpg.d/zulip-desktop.asc \
-    https://download.zulip.com/desktop/apt/zulip-desktop.asc
-echo "deb https://download.zulip.com/desktop/apt stable main" | sudo tee /etc/apt/sources.list.d/zulip-desktop.list
-echo
 
-# Zotero
+# r-rig to manage multiple R installations
 echo
-curl -sL https://raw.githubusercontent.com/retorquere/zotero-deb/master/install.sh | sudo bash
+`which sudo` curl -L https://rig.r-pkg.org/deb/rig.gpg -o /etc/apt/trusted.gpg.d/rig.gpg
 echo
+`which sudo` sh -c 'echo "deb http://rig.r-pkg.org/deb rig main" > /etc/apt/sources.list.d/rig.list'
 
-# Spotify
-# echo
-# curl -sS https://download.spotify.com/debian/pubkey_5384CE82BA52C83A.asc | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
-# echo "deb https://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 
 # Syncthing
 sudo curl -L -o /etc/apt/keyrings/syncthing-archive-keyring.gpg https://syncthing.net/release-key.gpg
 echo "deb [signed-by=/etc/apt/keyrings/syncthing-archive-keyring.gpg] https://apt.syncthing.net/ syncthing stable-v2" | sudo tee /etc/apt/sources.list.d/syncthing.list
-
-# Setup to use r-rig to manage R installations
-#echo
-#`which sudo` curl -L https://rig.r-pkg.org/deb/rig.gpg -o /etc/apt/trusted.gpg.d/rig.gpg
-#echo
-#`which sudo` sh -c 'echo "deb http://rig.r-pkg.org/deb rig main" > /etc/apt/sources.list.d/rig.list'
 
 # Check if there are any packages to upgrade
 echo
@@ -52,7 +38,7 @@ echo "[*] CHECKING FOR UPDATES..."
 sudo apt update && sudo apt upgrade
 
 # Packages to install {
-declare -a MAIN_PKGS=(
+declare -a APT_PKGS=(
 "7zip"
 "7zip-rar"
 "biber"
@@ -63,6 +49,8 @@ declare -a MAIN_PKGS=(
 "fzf"
 "gir1.2-gtop-2.0"
 #"hplip"
+#"heif-gdk-pixbuf"
+#"heif-thumbnailer"
 "imagemagick"
 "jags"
 "just"
@@ -74,10 +62,11 @@ declare -a MAIN_PKGS=(
 "libfribidi-dev"
 "libgdal-dev"
 "libgit2-dev"
-"libgmp-dev"
-"libgmp3-dev"
+#"libgmp-dev"
+#"libgmp3-dev"
 "libgsl-dev"
 "libharfbuzz-dev"
+"libheif-examples"
 "libmagick++-dev"
 "libmpfr-dev"
 "libnlopt-dev"
@@ -98,32 +87,33 @@ declare -a MAIN_PKGS=(
 "nvme-cli"
 "pdftk-java"
 "python3-pynvim"
-"qt5ct"
-"qt6ct"
+#"qt5ct"
+#"qt6ct"
 "r-base"
-#"r-rig"
+"r-rig"
 "ripgrep"
 #"sane"
 "smartmontools"
-# "spotify-client"
 "stow"
 "syncthing"
 "system76-keyboard-configurator"
 "texlive-full"
-#"ttf-mscorefonts-installer"
 "wl-clipboard"
-"zotero"
-"zulip"
+"zsh"
+"zsh-autosuggestions"
+"zsh-doc"
+"zsh-syntax-highlighting"
 ) # }
+
 
 # Install repo packages
 echo
 echo "[*] INSTALLING PACKAGES..."
-sudo apt install ${MAIN_PKGS[*]} -y
-
+sudo apt install ${APT_PKGS[@]} -y
+echo
 
 # Make personal directories
-#echo "Create personal directories"
+echo "[*] CREATING SOME DIRECTORIES..."
 mkdir -p $HOME/Documents/{1_projects,2_areas,3_resources,4_archives}
 mkdir -p $HOME/.local/{bin,build}
 mkdir -p $HOME/.local/share/{applications,fonts,icons}

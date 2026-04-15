@@ -1,5 +1,5 @@
 #!/bin/bash
-#set -e
+set -euo pipefail
 
 # -------------------------------------------------------
 # A script to automate the installation of flatpaks that is
@@ -12,30 +12,29 @@
 # -------------------------------------------------------
 
 # Flatpaks to install {
-typeset -a FLATPAKS=(
+declare -a FLATPAKS=(
 "com.github.tchx84.Flatseal"
-"com.obsproject.Studio"
+#"com.obsproject.Studio"
 "com.slack.Slack"
 "com.spotify.Client"
-"com.super_productivity.SuperProductivity"
-#"dev.edfloreshz.Tasks"
+#"com.super_productivity.SuperProductivity"
 "dev.edfloreshz.CosmicTweaks"
-#"io.github.elevenhsoft.WebApps"
-#"io.github.JakubMelka.Pdf4qt"
+"com.github.xournalpp.xournalpp"
 #"io.github.wiiznokes.fan-control"
-#"org.gnome.DejaDup"
+#"org.blender.Blender"
 "org.gnome.World.PikaBackup"
 #"org.jamovi.jamovi"
 #"org.jaspstats.JASP"
-"org.localsend.localsend_app"
+#"org.localsend.localsend_app"
 "org.onlyoffice.desktopeditors"
 "org.zotero.Zotero"
 "org.zulip.Zulip"
+"us.zoom.Zoom"
 ) # }
 
 
 echo "Installing flatpaks from flathub"
-flatpak install flathub ${FLATPAKS[*]} -y
+flatpak install flathub ${FLATPAKS[@]} -y
 echo
 
 # Refresh font cache to jamovi
