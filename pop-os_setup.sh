@@ -14,7 +14,7 @@ set -euo pipefail
 echo "[*] ADDING SOURCES FOR SOME PROGRAMS"
 
 # R
- From CRAN for Ubuntu
+# From CRAN for Ubuntu
 echo
 wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | sudo tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc
 echo
@@ -56,7 +56,7 @@ declare -a APT_PKGS=(
 "just"
 "libcairo2-dev"
 "libclang-dev"
-"libcurl4-openssl-dev"
+#"libcurl4-openssl-dev"
 "libfftw3-dev"
 "libfontconfig1-dev"
 "libfribidi-dev"
@@ -100,9 +100,6 @@ declare -a APT_PKGS=(
 "texlive-full"
 "wl-clipboard"
 "zsh"
-"zsh-autosuggestions"
-"zsh-doc"
-"zsh-syntax-highlighting"
 ) # }
 
 
