@@ -23,7 +23,7 @@ cran <- c(
   "ggpmisc",
   "ggpp",
   "ggprism",
-  "ggResidpanel",
+  # "ggResidpanel",
   "grateful",
   "here",
   "Hmisc",
@@ -57,7 +57,7 @@ cran <- c(
   "rmarkdown",
   "robust",
   "robustlmm",
-  "Routliers",
+  # "Routliers",
   "scales",
   "styler",
   "superb",
@@ -73,7 +73,6 @@ cran <- c(
 pak::pkg_install(cran)
 
 repos <- c(
-  "cran/retimes@0.1-2", # archived package workaround
   "giocomai/ganttrify",
   "GRousselet/rogme",
   "JLSteenwyk/ggpubfigs",
@@ -82,6 +81,13 @@ repos <- c(
   "scienceverse/scienceverse"
 )
 pak::pkg_install(repos)
+
+archived <- c(
+  "cran/ggResidpanel@0.3.0",
+  "cran/retimes@0.1-2",
+  "cran/Routliers@0.0.0.3"
+)
+pak::pkg_install(archived)
 
 
 # to explore
