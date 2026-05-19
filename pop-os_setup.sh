@@ -111,7 +111,7 @@ echo
 
 # Make personal directories
 echo "[*] CREATING SOME DIRECTORIES..."
-mkdir -p $HOME/Documents/{1_projects,2_areas,3_resources,4_archives}
+#mkdir -p $HOME/Documents/{1_projects,2_areas,3_resources,4_archives}
 mkdir -p $HOME/.local/{bin,build}
 mkdir -p $HOME/.local/share/{applications,fonts,icons}
 #mkdir -p $HOME/.themes
@@ -125,6 +125,26 @@ cat << 'EOF' > "$HOME/.gitignore"
 .DS_Store
 .quarto
 EOF
+
+# Install some additional packages
+echo "[*] INSTALLING AND INTEGRATING KITTY..."
+curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+ln -sf ~/.local/kitty.app/bin/kitty ~/.local/kitty.app/bin/kitten ~/.local/bin/
+cp ~/.local/kitty.app/share/applications/kitty.desktop ~/.local/share/applications/
+cp ~/.local/kitty.app/share/applications/kitty-open.desktop ~/.local/share/applications/
+sed -i "s|Icon=kitty|Icon=$(readlink -f ~)/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" ~/.local/share/applications/kitty*.desktop
+sed -i "s|Exec=kitty|Exec=$(readlink -f ~)/.local/kitty.app/bin/kitty|g" ~/.local/share/applications/kitty*.desktop
+echo 'kitty.desktop' > ~/.config/xdg-terminals.list
+echo
+echo "[*] INSTALLING OH-MY-POSH..."
+curl -s https://ohmyposh.dev/install.sh | bash -s
+echo
+echo "[*] INSTALLING RUSTUP..."
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+echo
+echo "[*] INSTALLING UV..."
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
 
 # Syncthing stuff
 echo
@@ -182,4 +202,5 @@ exit 0
 # sudo apt-mark auto PACKAGE
 
 # tree-sitter CLI for neovim
+#cargo binstall tree-sitter-cli
 #cargo install --locked tree-sitter-cli
